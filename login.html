@@ -3,21 +3,71 @@
 <head>  
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title> Connexion </title>  
+<title> Connexion </title> 
+<link rel="stylesheet" href="login.css"> 
 </head>    
-<body>      
-    <form> 
-         
-        <div class="container">   
-            <label>Email : </label>   
-            <input type="text" placeholder="Email" name="Email" required>  
-            <label>Mot de passe : </label>   
-            <input type="password" placeholder="mot de passe" name="mot de passe" required>  
-            <button type="submit">Se connecter</button>   
-            <input type="checkbox" checked="checked"> Se souvenir de moi   
-            <button type="button" class="cancelbtn"> annuler</button>   
-            <a href="#"> mot de passe oublié ?</a>   
+<body>  
+
+
+    <header>
+         <div class="header">
+        <div id="header">
+                 
+            
+            <div id="logo">
+                <img src="#" />
+            </div>   
+                     
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">acceuil</a></li>
+                    <li><a href="#">JEU</a></li>
+                    <li><a href="#">SCORES</a></li>
+                    <li class="active"></li><a href="#">NOUS CONTACTEZ</a></li>
+                </ul>
+            </nav>
         </div>   
-    </form>     
+    
+
+     
+        </div>
+    </header>
+    
+    
+    <div id="container-connexion">
+        <div id="titre">Connectez-vous</div>
+    
+    <form>
+        <div class="input">
+        <input id="utlisateur" placeholder="Email" >
+        </div>
+
+        
+        <div class="input">
+            <input id="mot de passe" type="password" placeholder="mot de passe" >
+            </div>
+
+            <div class="se souvenir de moi">
+                <input type="checkbox">
+                <span>se souvenir de moi</span>
+            </div>
+            <input type="submit" value="Se conneceter">
+
+
+            <div class="mot de passe oublié ">
+                <a href="#">mot de passe oublié ?</a>
+            </div>
+
+            <div class="creer un compter">
+                <a href="register.html"> Inscrivez vous !</a>
+            </div>
+
+
+    </form>
+    
+
+
+     
 </body>     
 </html>  
