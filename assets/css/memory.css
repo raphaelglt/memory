@@ -1,0 +1,9 @@
+td {
+    background-color: orange;
+    width: 20vmax;
+    height: 5vmax;
+    border-radius: 5px;
+}
+main {
+    margin: 40px;
+}
