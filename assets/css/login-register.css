@@ -19,7 +19,7 @@ body{
     background-color: rgb(15, 13, 46);
     top: 20%;
     margin: auto;
-    text-align: center;
+    
 
 }
 #container-inscription{
@@ -34,17 +34,18 @@ body{
     background-color: rgb(15, 13, 46);
     top: 20%;
     margin: auto;
-    text-align: center;
+   
 }
 .input {
     display: flex;
     flex: auto;
     margin: auto;
     margin-bottom: 30px;
+   
     
 
     width: 400px;
-    height: 30px;
+    height: 1cm;
     border-radius: 4px;
     
     
@@ -57,6 +58,7 @@ body{
 
 
 input[type=text] {
+    padding: 2cm ,4cm;
     
     outline: none;
     position: relative;
@@ -67,20 +69,22 @@ input[type=text] {
     margin: 0;
     background-color: rgb(39, 37, 68);
     border: transparent;
-    padding: 0px 0px;
+   
     
     
 }
 input[type=password] {
+   
+
+    
     position: relative;
     outline: none;
     display: flex;
     flex: auto;
     width: 400px;
-
     background-color:rgb(39, 37, 68);
     border: transparent;
-    padding: 0px 0px;
+    
     
 }
 .button {
@@ -89,6 +93,7 @@ input[type=password] {
     margin-top: 10px;
     margin-left: 18.4cm;
     margin-right: auto;
+    margin-bottom: 15px;
     padding: 40px , 20px;
     border-radius: 3px solid;
     border-radius: 5px;
@@ -102,5 +107,5 @@ input[type=password] {
 .form{
     
     
-    height: 300px;
+    height: 350px;
 }
