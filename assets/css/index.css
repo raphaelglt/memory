@@ -13,6 +13,7 @@ header {
     display: flex;
     flex-direction: column;
     height: 750px;
+    background: url("../../assets/images/banner1index3.jpeg") no-repeat center center;
 }
 #head p, #head a {
     color: white;
