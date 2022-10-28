@@ -2,6 +2,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
+<<<<<<< HEAD
     
 }
 
@@ -14,6 +15,17 @@ body{
     position: center;
     top: 20%;
     margin: auto;
+=======
+    color: azure;
+}
+
+#container-connexion {
+    background-color: rgb(49, 3, 128);
+    position: center;
+    top: 20%;
+    margin: auto;
+
+>>>>>>> refs/remotes/origin/login
     text-align: center;
 
 }
@@ -21,6 +33,7 @@ body{
     display: flex;
     flex: 1;
     flex-direction: column;
+<<<<<<< HEAD
     background-color: rgb(15, 13, 46);
  
     position: center;
@@ -66,4 +79,12 @@ input[type=password] {
     border: transparent;
     padding: 5px 2px;
     
+=======
+    background-color: rgb(49, 3, 128);
+    position: center;
+    top: 20%;
+    margin: auto;
+
+    text-align: center;
+>>>>>>> refs/remotes/origin/login
 }
