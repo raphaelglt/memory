@@ -1,11 +1,11 @@
-body{
-    margin: 0git;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
+ body{
+    margin: 0;
    
-
+    font-family: "Poppins", "sans-serif";
+    font-weight: normal;
     
 }
+
 
 #container-connexion{
     margin-left: auto;
@@ -40,7 +40,9 @@ body{
     display: flex;
     flex: auto;
     margin: auto;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    font-size: 2em;
+    
    
     
 
@@ -65,8 +67,8 @@ input[type=text] {
     display: flex;
     flex: auto;
     width: 400px;
-    height: 20px;
-    margin: 0;
+    
+    
     background-color: rgb(39, 37, 68);
     border: transparent;
    
@@ -88,11 +90,9 @@ input[type=password] {
     
 }
 .button {
+    position: relative;
     display: block;
     background-color: orange;
-    margin-top: 10px;
-    margin-left: 18.4cm;
-    margin-right: auto;
     margin-bottom: 15px;
     padding: 40px , 20px;
     border-radius: 3px solid;
@@ -104,8 +104,15 @@ input[type=password] {
 
 
 }
-.form{
-    
-    
-    height: 350px;
+.login{
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    width: 325px;
+    text-align: center;
+    margin: O auto;
+    padding: 20px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-70%);
 }

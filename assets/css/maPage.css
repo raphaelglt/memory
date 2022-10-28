@@ -29,6 +29,10 @@ h1 {
     font-family: 'Poppins', sans-serif;
     letter-spacing: 1px;
     color: white;
+    position: relative;
+    right: 2%;
+    
+   
 }
 #head p, #head a {
     color: white;
