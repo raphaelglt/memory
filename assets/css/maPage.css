@@ -1,6 +1,5 @@
 body {
-    margin: auto;
-    margin-top: 0;
+    margin: 0;
     background-color: rgb(15, 13, 46);
 }
 header {
@@ -23,7 +22,7 @@ a:link {
     text-decoration: none;
 }
 #head a:hover {
-    color: rgb(234, 146, 36)
+    color: rgb(234, 146, 36);
 }
 #head {
     display: flex;
@@ -52,4 +51,72 @@ a:link {
 }
 #links a {
     padding: 13px;
+}
+footer {
+    position: relative;
+    background-color: rgb(13, 10, 38);
+    bottom: 0;
+    width: 100%;
+    height: 400px;
+}
+#foot {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    align-content: flex-start;
+}
+#foot p, .footer-link {
+    color: rgb(201, 195, 193);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+}
+#foot li {
+    color: rgb(234, 146, 36);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+}
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+.footer-element {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 75%;
+}
+h3 {
+    color: white;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+ul {
+    padding-left: 13px;
+    list-style-type:square
+}
+.orange-title {
+    color: rgb(234, 146, 36);
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+.logo {
+    background-color: rgb(234, 146, 36);
+    height: 18px;
+    padding: 4px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+#facebook {
+    padding: 4px 7px 4px 7px;
+    margin-left: 0;
+}
+#instagram {
+    padding: 4px 6px 4px 6px;
 }
