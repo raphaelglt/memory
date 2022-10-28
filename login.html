@@ -5,63 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title> Connexion </title> 
-<link rel="stylesheet" href="LetR.css"> 
+<link rel="stylesheet" href="assets/css/LetR.css"> 
+<link rel="stylesheet" href="assets/css/maPage.css">
 </head>    
 <body>  
 
 
     <header>
-         <div class="header">
-        <div id="header">
-                 
-            
-            <div id="logo">
-                <img src="#" />
-            </div>   
-                     
-            
-            <nav>
-                <ul>
-                    <li><a href="index.html">acceuil</a></li>
-                    <li><a href="#">JEU</a></li>
-                    <li><a href="#">SCORES</a></li>
-                    <li class="active"><a href="#">NOUS CONTACTEZ</a></li>
-                </ul>
-            </nav>
-        </div>   
-    
-
-     
+        <div id="head">
+            <p>The Power Of Memory</p>
+            <div id="links">
+                <a href="index.html">ACCUEIL</a>
+                <a href="memory.html">JEU</a>
+                <a href="scores.html">SCORES</a>
+                <a href="contact.html">NOUS CONTACTER</a>
+            </div>
+        </div>
+        <div id="banner">
+            <h1>CONNEXION</h1>
         </div>
     </header>
     
     
     <div id="container-connexion">
-        <div id="titre">Connectez-vous</div>
+        
     
     <form>
         <div class="input">
-        <input id="utlisateur" placeholder="Email" >
+        <input type="text" id="utlisateur" placeholder="Email" required class="validate">
         </div>
 
         
         <div class="input">
-            <input id="mot de passe" type="password" placeholder="mot de passe" >
+            <input id="mot de passe" type="password" placeholder="mot de passe" required class="validate" >
             </div>
 
             <div class="se souvenir de moi">
                 <input type="checkbox">
-                <span>se souvenir de moi</span>
+                <span style="color: white;">se souvenir de moi</span>
             </div>
             <input classe ="btn" type="submit" value="Se conneceter">
 
 
-            <div class="mot de passe oublié ">
-                <a href="#">mot de passe oublié ?</a>
-            </div>
+           
 
             <div class="creer un compter">
-                <a href="register.html"> Inscrivez vous !</a>
+                <a style="color: white;" href="register.html"> Inscrivez vous </a>
             </div>
 
 
