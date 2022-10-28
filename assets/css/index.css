@@ -1,0 +1,85 @@
+body {
+    margin: auto;
+    margin-top: 0;
+    
+    background-color: rgb(15, 13, 46);
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+    
+}
+
+/*HEADER*/
+header {
+    display: flex;
+    flex-direction: column;
+    height: 750px;
+}
+#head p, #head a {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 550;
+}
+a:link {
+    text-decoration: none;
+}
+#head a:hover {
+    color: rgb(234, 146, 36);
+    
+}
+#head{
+    display: flex;
+    /*align-items: center;
+    justify-content: space-around;*/
+    /*background: url("../../assets/images/banner1index1.jpeg") no-repeat center center;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    align-items: center;
+    justify-content: space-around;
+}
+#head a{
+    font-size: 14px;
+}
+
+#banner{
+    display: flex;
+   height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#links {
+    display: flex;
+
+}
+#links a {
+    padding: 13px;
+}
+
+#banner{
+    display: flex;
+    flex-direction: column;
+}
+#banner h1{
+    text-align: center;
+    font-size: 4em;
+    color: white;
+    margin: 0;
+}
+#banner p{
+    color: white;
+    opacity: 0.7;
+}
+
+#buttongame{
+    background-color: orange;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: large;
+    border: none;
+    padding: 15px 45px;
+}
+#buttongame a{
+    color: white;
+}
