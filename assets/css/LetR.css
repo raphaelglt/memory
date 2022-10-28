@@ -6,6 +6,7 @@ body{
 }
 
 #container-connexion{
+    height: auto;
 
     display: flex;
     flex: 1;
@@ -20,6 +21,7 @@ body{
 #container-inscription{
     display: flex;
     flex: 1;
+    height: auto;
     flex-direction: column;
     background-color: rgb(15, 13, 46);
  
@@ -66,4 +68,19 @@ input[type=password] {
     border: transparent;
     padding: 5px 2px;
     
+}
+.button {
+    background-color: orange;
+    margin-bottom: 100px;
+    margin-left: 0px;
+    margin-right: 355px;
+    padding: 40px , 20px;
+    border-radius: 3px solid;
+    border-radius: 5px;
+    position: relative;
+    width: 100px;
+    height: 40px;
+    
+
+
 }
