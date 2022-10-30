@@ -475,14 +475,39 @@
             <article id="chat">
                 <div id="chat-head">
                     <div id="bot-img-container">
-                        <img src="assets/images/elgato.jpeg" alt="Bot profil picture" id="bot-img" />
+                        <img src="assets/images/elgato.jpeg" alt="Bot profil picture" id="bot-img-head" />
                         <div id="connect-indicator"></div>
                     </div>
-                    <p id="bot-name">El Gato</p>
+                    <p id="chat-title">Chat général</p>
                 </div>
                 <div id="chat-body">
-
+                    <div class="my-message">
+                        <div class="message">
+                            <p class="message-detail">Moi</p>
+                            <p class="message-content my-text">Bonjour ElGato !</p>
+                            <p class="message-detail">Aujourd'hui à 15h52</p>
+                        </div>
+                    </div>
+                    <div class="bot-message">
+                        <img src="assets/images/elgato.jpeg" alt="Bot profil picture" id="bot-img-body" />
+                        <div class="message">
+                            <p class="message-detail">ElGato</p>
+                            <p class="message-content bot-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis vulputate dolor, in ornare ex. Etiam aliquet neque eget massa. </p>
+                            <p class="message-detail">Aujourd'hui à 15h53</p>
+                        </div>
+                    </div>
+                    <div class="my-message">
+                        <div class="message">
+                            <p class="message-detail">Moi</p>
+                            <p class="message-content my-text">Je n'ai pas compris ton dernier message mon ami...</p>
+                            <p class="message-detail">Aujourd'hui à 16h08</p>
+                        </div>
+                    </div>
                 </div>
+                <form id="input-container">
+                    <textarea type="text" id="input" placeholder="Votre message..." ></textarea>
+                    <input type="submit" id="submit" />
+                </form>
             </article>
             <footer>
                 <div id="foot">
