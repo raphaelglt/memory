@@ -1,9 +1,61 @@
 td {
     background-color: orange;
-    width: 20vmax;
-    height: 5vmax;
+    width: 10vw;
+    height: 3.5vw;
     border-radius: 5px;
 }
 main {
     margin: 40px;
+}
+#chat {
+    margin: 25px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 25vmax;
+    height: 35vmax;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+#chat-head {
+    flex: 1;
+    padding-left: 1.5vmax;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: rgb(95, 95, 237);
+    display: flex;
+    align-items: center;
+}
+#chat-body {
+    flex: 7;
+}
+#table-container {
+    margin-right: 30%;
+}
+#bot-img {
+    width: 3.5vmax;
+    height: 3.5vmax;
+    border-radius: 50%;
+}
+#bot-name {
+    color: white;
+    margin-left: 0.5vmax;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+}
+#connect-indicator {
+    width: 1vmax;
+    height: 1vmax;
+    background-color: green;
+    border-radius: 50%;
+    position: absolute;
+    margin-bottom: 5px;
+    right: 0;
+    bottom: 0;
+    border: 1px white solid;
+}
+#bot-img-container {
+    position: relative;
 }
