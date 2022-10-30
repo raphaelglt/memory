@@ -206,6 +206,24 @@ section{
     font-weight: bolder;
     font-size: 1em;
 }
+/*CONTAINER4*/
+.container4{
+    color: white;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+.container4 h2{
+    font-weight: bolder;
+    font-size: 2.5em;
+    margin: 0;
+}
+.container4 p{
+    opacity: 0.65;
+}
 
 /*FOOTER*/
 footer {
