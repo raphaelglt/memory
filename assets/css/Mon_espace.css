@@ -7,15 +7,7 @@
 body {
     background-color: rgb(15, 13, 46);
 }
-header {
-    height: 340px;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-}
-header{ 
-    min-height:50px;
-}
+
 main {
     margin: 0 auto;
     min-height: calc(100vh - 340px - 400px);
@@ -24,6 +16,10 @@ footer{
     width: 100%;
     height: 400px;
     background-color: rgb(13, 10, 38);
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+
 }
 h1 {
     font-family: 'Poppins', sans-serif;
@@ -47,27 +43,17 @@ a:link {
     color: rgb(234, 146, 36);
 }
 #head {
-    
     display: flex;
+    
     align-items: center;
     justify-content: space-around;
-    flex: 1;
+    
     background-color: rgb(18, 15, 44);
 }
 #head a {
     font-size: 14px;
 }
-#banner {
-    display: flex;
-    flex: 3;
-    background: url("../../assets/images/banner4.jpg") no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    align-items: center;
-    justify-content: center;
-}
+
 #links {
     display: flex;
     justify-content: space-between;
@@ -75,15 +61,30 @@ a:link {
 #links a {
     padding: 13px; 
 }
+.card {
+background-color: blue;
+width: 100%;
+height: 100%;
+margin-bottom: 0;
+position: relative;
+top: 50%;
+transform: translate(-50);
+
+}
+
+
+
+
 #foot {
     width: 100%;
     height: 100%;
     display: flex;
     flex: 1;
-    flex-direction: row;
     align-items: flex-start;
     justify-content: space-around;
     align-content: flex-start;
+    
+    
 }
 #foot p, .footer-link {
     color: rgb(201, 195, 193);
