@@ -121,9 +121,7 @@ section{
     margin-right: 100px;
     margin-left: 100px;
 }
-.type-infos1 img{
-    
-}
+
 .info2{
     grid-column-start: 5;
     grid-column-end: 9;
