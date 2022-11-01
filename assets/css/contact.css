@@ -144,6 +144,28 @@ section{
     padding: 4px 6px 4px 6px;
 }
 
+/*form-container*/
+.form-container{
+    margin-top: 50px;
+    width: 400px;
+}
+#form{
+    background-color: rgb(39, 38, 69);
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid;
+    padding: 12px 20px 12px 40px;
+}
+#buttonsend{
+    background-color: rgb(236, 146, 36);
+    font-family: 'Poppins', sans-serif;
+    font-size: medium;
+    border: none;
+    padding: 10px 15px;
+}
+#buttonsend a{
+    color: white;
+}
+
 /*FOOTER*/
 footer {
     position: relative;
