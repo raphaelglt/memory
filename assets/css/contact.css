@@ -1,0 +1,79 @@
+body {
+    margin: auto;
+    margin-top: 0;
+    
+    background-color: rgb(13, 10, 38);
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+    
+}
+
+/*HEADER*/
+header {
+    height: 340px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+header{ 
+    min-height:50px;
+}
+main {
+    margin: 0 auto;
+    min-height: calc(100vh - 340px - 400px);
+}
+footer{
+    width: 100%;
+    height: 400px;
+    background-color: rgb(13, 10, 38);
+}
+h1 {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+    color: white;
+    position: relative;
+    right: 2%;
+    
+   
+}
+#head p, #head a {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 510;
+}
+a:link {
+    text-decoration: none;
+}
+#head a:hover {
+    color: rgb(234, 146, 36);
+}
+#head {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+    background-color: rgb(18, 15, 44);
+}
+#head a {
+    font-size: 14px;
+}
+#banner {
+    display: flex;
+    flex: 3;
+    background: url("../../assets/images/banner4.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+}
+#links {
+    display: flex;
+    justify-content: space-between;
+}
+#links a {
+    padding: 13px; 
+}
+
+/*SECTION*/
