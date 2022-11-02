@@ -1,0 +1,31 @@
+@media (max-width: 800px) {
+    table {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+#table-container {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin: 40px;
+}
+table {
+    border-spacing: 0 10px;
+}
+td, th {
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    padding: 10px 30px;
+}
+td {
+    padding-top: 22px;
+    border-top: 1px white solid;
+}
+.memory-link {
+    color: white;
+}
+.memory-link:hover {
+    color: rgb(234, 146, 36);
+}
