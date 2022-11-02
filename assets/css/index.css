@@ -43,6 +43,7 @@ a:link {
 
 #banner{
     display: flex;
+    flex-direction: column;
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -56,10 +57,7 @@ a:link {
     padding: 13px;
 }
 
-#banner{
-    display: flex;
-    flex-direction: column;
-}
+
 #banner h1{
     text-align: center;
     font-size: 4em;
