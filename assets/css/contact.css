@@ -92,14 +92,11 @@ section{
     color: white;
 }
 .gridinfos{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin: 10px;
     opacity: 0.7;
 }
 .info1{
@@ -108,20 +105,23 @@ section{
     grid-row-start: 1;
     grid-row-end: 5;
     background-color: rgb(13, 10, 38);
-}
-.info1-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .type-infos1{
-    background-color: orange;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(234, 146, 36);
+    height: 30px;
+    width: 30px;
+    padding: 10px;
     border-radius: 50%;
-    margin-right: 100px;
-    margin-left: 100px;
 }
-
+.type-infos1 img{
+    width: 100%;
+}
 .info2{
     grid-column-start: 5;
     grid-column-end: 9;
@@ -135,11 +135,6 @@ section{
     grid-row-start: 1;
     grid-row-end: 5;
     background-color: rgb(13, 10, 38);
-}
-#icons{
-    width: 15% ;
-    color: white;
-    padding: 4px 6px 4px 6px;
 }
 
 /*form-container*/
