@@ -1,0 +1,265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(15, 13, 46);
+}
+
+main {
+    margin: 0 auto;
+    min-height: calc(100vh - 340px - 400px);
+}
+footer{
+    width: 100%;
+    height: 400px;
+    background-color: rgb(13, 10, 38);
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+
+}
+h1 {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+    color: white;
+    position: relative;
+    right: 2%;
+    
+   
+}
+#head p, #head a {
+    
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 510;
+}
+a:link {
+    text-decoration: none;
+}
+#head a:hover {
+    color: rgb(234, 146, 36);
+}
+#head {
+    display: flex;
+    
+    align-items: center;
+    justify-content: space-around;
+    
+    background-color: rgb(18, 15, 44);
+}
+#head a {
+    font-size: 14px;
+}
+
+#links {
+    display: flex;
+    justify-content: space-between;
+}
+#links a {
+    padding: 13px; 
+}
+
+
+
+#main-container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    padding: 10px;
+    height: 8cm;
+}
+
+
+
+
+#card {
+
+border-radius: 10px;
+background-color: rgb(113, 26, 121);
+    flex: 1;
+margin: 10px;
+}
+#card2 {
+    flex: 5;
+    border-radius: 10px;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+
+    
+}
+
+.avatar {
+padding: 10px;
+position: relative;
+    left: 67%;
+    transform: translateX(-70%);
+}
+#main-container h1 {
+    position: relative;
+    left: 30px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    padding: 0%;
+}
+.button1{
+    margin-top: 10px;
+    margin-left: 20px;
+    background-color: orange;
+    color: black;
+    padding: 20px , 20px;
+    border-radius: 3px solid;
+    border-radius: 5px;
+    font-weight: 100;
+    font-size: 1em;
+    border: none;
+    
+    width: 150px;
+    height: 40px;
+
+}
+input{
+    margin-bottom: 10px;
+    background-color: rgb(39, 37, 68);
+    padding: 2px 4px;
+    margin-top: 10px;
+    text-align: left;
+    margin: 5px;
+    margin-bottom: 20px;
+    
+    color: white;
+   
+    border: none;
+
+    width: 400px;
+    height: 30px;
+    border-radius: 4px;
+}
+
+
+.input1[type=text] {
+    padding: 2cm ,4cm;
+    font-size: 0.70em;
+    outline: none;
+    position: relative;
+    display: flex;
+    flex: auto;
+    width: 400px;
+    
+    color: white;
+    background-color: rgb(39, 37, 68);
+    border: transparent;
+}
+
+.input1[type=password] {
+    font-size: 0.70em;
+    color: white;
+    position: relative;
+    outline: none;
+    display: flex;
+    flex: auto;
+    width: 400px;
+    background-color:rgb(39, 37, 68);
+    border: transparent;
+}
+
+
+
+#modif-password {
+    flex: 1;
+    display: flex;
+    background-color: rgb(113, 26, 121);
+    
+    border-radius: 10px;
+    flex-direction: column;
+    margin: 10px;
+    
+}
+#modif-mail {
+    border-radius: 10px;
+    flex: 1;
+    background-color: rgb(113, 26, 121);
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#foot {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    justify-content: space-around;
+    align-content: flex-start;
+    
+    
+}
+#foot p, .footer-link {
+    color: rgb(201, 195, 193);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+}
+#foot li {
+    color: rgb(234, 146, 36);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+}
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+.footer-element {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 75%;
+}
+h3 {
+    color: white;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 16px;
+}
+ul {
+    padding-left: 13px;
+    list-style-type:square
+}
+.orange-title {
+    color: rgb(234, 146, 36);
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+.logo {
+    background-color: rgb(234, 146, 36);
+    height: 18px;
+    padding: 4px;
+    border-radius: 3px;
+    margin-left: 5px;
+    margin-bottom: 20px;
+}
+#facebook {
+    padding: 4px 7px 4px 7px;
+    margin-left: 0;
+}
+#instagram {
+    padding: 4px 6px 4px 6px;
+}

@@ -35,6 +35,7 @@ h1 {
    
 }
 #head p, #head a {
+    
     color: white;
     font-family: 'Poppins', sans-serif;
     font-weight: 510;
@@ -46,6 +47,7 @@ a:link {
     color: rgb(234, 146, 36);
 }
 #head {
+    
     display: flex;
     align-items: center;
     justify-content: space-around;
