@@ -60,7 +60,7 @@ a:link {
 #banner {
     display: flex;
     flex: 3;
-    background: url("../../assets/images/banner4.jpg") no-repeat center center;
+    background: url("../../assets/images/banner1index2.jpeg") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -81,7 +81,7 @@ section{
     margin-left: 200px;
     margin-right: 200px;
     margin-top: 100px;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 /*infos-container*/
 .infos-container{
@@ -172,16 +172,31 @@ section{
 /*form-container*/
 .form-container{
     margin-top: 50px;
-    width: 600px;
+    width: 75%;
 }
+form{
+    width: 100%;
+}
+input[name=nom],
+input[name=email]{
+    width: 32%;
+}
+input[name=sujet]{
+    width: 70%;
+}
+textarea{
+    width: 70%;
+    height: 75px;
+}
+
+
 #form{
     background-color: rgb(39, 38, 69);
     font-family: 'Poppins', sans-serif;
     border: 1px solid black;
     margin: 10px 0 10px 0;
-    padding: 12px 20px 12px 40px;
+    padding: 12px 20px 12px 20px;
     color: white;
-
 }
 #buttonsend{
     background-color: rgb(236, 146, 36);
