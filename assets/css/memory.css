@@ -20,7 +20,7 @@ main {
     flex-direction: column;
 }
 #chat-head {
-    padding: 0.5vw 0 0.5vw 1.5vw;
+    padding: 0.85vw 0 0.5vw 1.5vw;
     flex: 1;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -125,9 +125,27 @@ main {
 }
 #submit {
     border: none;
+    color: black;
     background-color: white;
     margin-left: 1vw;
     font-size: 15px;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
+}
+@media (max-width: 800px) {
+    #input {
+        font-size: 10px;
+        height: 20px;
+        padding: 2px;
+    }
+    #submit {
+        font-size: 12px;
+    }
+    #chat-head p {
+        font-size: 12px;
+    }
+    #chat-body p {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
 }
