@@ -145,13 +145,16 @@ section{
 /*form-container*/
 .form-container{
     margin-top: 50px;
-    width: 400px;
+    width: 600px;
 }
 #form{
     background-color: rgb(39, 38, 69);
     font-family: 'Poppins', sans-serif;
-    border: 1px solid;
+    border: 1px solid black;
+    margin: 10px 0 10px 0;
     padding: 12px 20px 12px 40px;
+    color: white;
+
 }
 #buttonsend{
     background-color: rgb(236, 146, 36);
