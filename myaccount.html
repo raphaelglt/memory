@@ -3,8 +3,9 @@
 <head>  
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="assets/css/login-register.css">
-    <link rel="stylesheet" href="assets/css/Mon_espace.css">
+    <link rel="stylesheet" href="assets/css/myaccount.css">
+    <link rel="stylesheet" href="assets/css/maPage.css">
+
     
     
 
@@ -21,23 +22,39 @@
                 <a href="contact.html">NOUS CONTACTER</a>
             </div>
         </div>
-
-    </header>
-
-      
-        <div class="card">
-            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="avatar" width="250px">
-            <div class="text">
-              <h1>Pseudo</h1>
-              <h1 >Niveau # </h1>
-              <h1 >SCORES</h1>
-              <button class="button">Jouer</button>
-            </div>
-          </div>
+        <div id="banner">
+            <h1>MON PROFIL</h1>
         </div>
-      </div>
+    </header>
+    <main>
 
+    <div id="main-container">
+        <div id="card">
+            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="avatar" width="250px">
+        </div>
+        <div id="card2">
+            <div id="modif-mail">
+                <h1>modifier le mail</h1>
+                <div class="input1">
+                    <input type="text" id="email" placeholder="ancien mail" >
+                    <input type="text" id="email" placeholder="nouveu mail" >
+                    <input type="password" id="email" placeholder="mot de passe" >
+                </div>
+                <input class="button1"  type="submit" value="Modifier">
+            </div>
+            <div id="modif-password">
+                <h1>modifier le mot de passe</h1>
+                <div class="input1">
+                    <input id="mot de passe" type="password" placeholder="ancien mot de passe" >
+                    <input id="mot de passe" type="password" placeholder="nouveau mot de passe" >
+                    <input id="mot de passe" type="password" placeholder="confirmez mot de passe">
+                </div>
+                <input class="button1"  type="submit" value="Modifier">
+            </div>
+        </div>
+    </div>
 
+    </main>
       <footer>
         <div id="foot">
             <div class="footer-element">
