@@ -16,7 +16,6 @@ $dbh = new PDO($dsn, $user, $password);
 
 // bind params
 
-// $stmt = $dbh->prepare($sql);
-// $stmt->bindParam(':game_name', $name);
+// $stmt->bindParam(':game_name', "The Power Of Memory");
 // $stmt->execute()
 ?>
