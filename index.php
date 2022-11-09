@@ -17,17 +17,17 @@
             <div id="head">
                 <p>The Power Of Memory</p>
                 <div id="links">
-                    <a href="index.html">ACCUEIL</a>
-                    <a href="memory.html">JEU</a>
-                    <a href="scores.html">SCORES</a>
-                    <a href="contact.html">NOUS CONTACTER</a>
+                    <a href="index.php">ACCUEIL</a>
+                    <a href="memory.php">JEU</a>
+                    <a href="scores.php">SCORES</a>
+                    <a href="contact.php">NOUS CONTACTER</a>
                 </div>
                 
             </div>
             <div id="banner">
                 <h1>BIENVENUE DANS </br> NOTRE STUDIO !</h1>
                 <p>Venez challenger les cerveaux les plus agiles !</p>
-                <button id="buttongame"><a href="memory.html">Jouer !</a></button>
+                <button id="buttongame"><a href="memory.php">Jouer !</a></button>
             </div>
         </header>
 

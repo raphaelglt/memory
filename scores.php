@@ -33,21 +33,21 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><a href="memory.html" class="memory-link">The Power Of Memory</a></td>
+                                <td><a href="memory.php" class="memory-link">The Power Of Memory</a></td>
                                 <td>👑 Moi</td>
                                 <td>Simple</td>
                                 <td>10</td>
                                 <td>31/10/2022 10:53:08</td>
                             </tr>
                             <tr>
-                                <td><a href="memory.html" class="memory-link">The Power Of Memory</a></td>
+                                <td><a href="memory.php" class="memory-link">The Power Of Memory</a></td>
                                 <td>ElGato</td>
                                 <td>Intermédiaire</td>
                                 <td>25</td>
                                 <td>12/10/2022 19:27:37</td>
                             </tr>
                             <tr>
-                                <td><a href="memory.html" class="memory-link">The Power Of Memory</a></td>
+                                <td><a href="memory.php" class="memory-link">The Power Of Memory</a></td>
                                 <td>Moi</td>
                                 <td>Impossible</td>
                                 <td>300</td>
