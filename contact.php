@@ -46,6 +46,12 @@ include('./init.php');
                 <input type="text" name="sujet" placeholder="Sujet" id="form" /></br>
                 <textarea name="message" placeholder="Message" id="form"></textarea></br>
                 <input type='submit' id="buttonsend" name="submit" />
+            <form method ="post">
+                <input type="text" name="nom" placeholder="Nom" id="form">
+                <input type="text" name="email" placeholder="Email" id="form"></br>
+                <input type="text" name="sujet" placeholder="Sujet" id="form"></br>
+                <textarea name="comm" placeholder="Message" id="form"></textarea></br>
+                <button id="buttonsend"><a href="">Envoyer</a></button>
             </form>
             <p>
                 <?php
