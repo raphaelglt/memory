@@ -42,7 +42,7 @@ session_destroy();
 
         <div class="form-container">
             <form action="">
-                <input type="text" name="nom" placeholder="Nom" id="form">
+                <input type="text" name="nom" placeholder="Nom" id="form"></br>
                 <input type="text" name="email" placeholder="Email" id="form"></br>
                 <input type="text" name="sujet" placeholder="Sujet" id="form"></br>
                 <textarea name="comm" placeholder="Message" id="form"></textarea></br>
