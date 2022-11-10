@@ -29,3 +29,9 @@ td {
 .memory-link:hover {
     color: rgb(234, 146, 36);
 }
+#no-score-text {
+    font-family: "Poppins", sans-serif;
+    color: white;
+    margin: 50px;
+    font-size: 16px;
+}
