@@ -1,3 +1,11 @@
+<?php
+//select content for the welcome page
+include('./includes/database.inc.php');
+$sql = file_get_contents('./sql/dynamic_welcome_page.sql');
+$stmt = $dbh->query($sql);
+$result = $stmt->fetchAll();
+print_r($result);
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -94,7 +102,7 @@
                     <img src="assets/images/watchdogs2.png" class="gridimg2" id="border" alt="watchdogs 2">
                 </div>
                 <div class="rectangle1" id="border">
-                    <p id="stats">310</p>
+                    <p id="stats"><?php if(isset($result)) echo $result[0]['count_scores'] ?></p>
                     <p id="intitule">Parties Jouées</p>
                 </div>
                 <div class="rectangle2" id="border">
@@ -106,7 +114,7 @@
                     <p id="intitule">Temps Record</p>
                 </div>
                 <div class="rectangle4" id="border">
-                    <p id="stats">21 300</p>
+                    <p id="stats"><?php if(isset($result)) echo $result[0]['count_users'] ?></p>
                     <p id="intitule">Joueurs Inscrits</p>
                 </div>
             </div>
