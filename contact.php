@@ -43,27 +43,35 @@
                 <textarea name="comm" placeholder="Message" id="form"></textarea></br>
                 <button id="buttonsend"><a href="">Envoyer</a></button>
             </form>
-            <p id="message">
+            <p>
                 <?php
-                if(empty($_POST)){
+                if(!empty($_POST)){
 
-                    if (empty($_POST["name"])) {
+                    if (empty($_POST["nom"])) {
 
-                        echo '<p style = color : white;> Veuillez vérifier le formulaire - veuillez saisir votre nom.';
+                        echo '<p style ="color:white"> Veuillez vérifier le formulaire - veuillez saisir votre nom.';
 
-                    }else if (empty($_POST["email"])){
+                    }
+                    
+                    else if (!empty($_POST["email"])){
                         if (!empty($_POST["email"])) {
                             $point = strpos($_POST['nom'], ".");
-                            $arobase = strpos($_POST[''], "@");
+                            $arobase = strpos($_POST['nom'], "@");
                             if ($point === false)
-                                echo '<p style= color: white;">Veuillez vérifier le formulaire - votre email doit comporter un point.</p>';
+                                echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un point.</p>';
                             else if ($arobase === false)
-                                echo '<p style= color: white;">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
-                            else
-                                echo '<p style= color: white;">Veuillez vérifier le formulaire - votre email est : </p>' . $_POST['email'];
+                                echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
                         } else {
-                            echo '<p style= color: white;">Veuillez vérifier le formulaire - veuillez saisir un email.</p>';
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un email.</p>';
                         }
+                    }
+
+                    else if(empty($_POST["sujet"])){
+                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un sujet.</p>';
+                    }
+
+                    else if(strlen($_POST['comm']) < 15){
+                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un message plus long.</p>';
                     }
 
                 }
