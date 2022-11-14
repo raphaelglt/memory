@@ -29,10 +29,9 @@ $stmt = $dbh->query($sql);
             <main>
                 <div id="table-container">
                 <?php
-                        //display scores if here's scores
-                        if (isset($stmt) && $stmt->rowCount()>0) {?>
-                    <table>
-                        
+                    //display scores if here's scores
+                    if (isset($stmt) && $stmt->rowCount()>0) {?>
+                    <table>        
                         <thead>
                             <tr>
                                 <th>Jeu</th>
@@ -48,6 +47,7 @@ $stmt = $dbh->query($sql);
                                     ?><tr>
                                         <td><a href='memory.php' class='memory-link'><?=$row['game_name']?></a></td>
                                         <td><?=$row['user_pseudo']?></td>
+                                        <?php //set the first letter as an upper ?>
                                         <td><?=ucfirst($row['score_level'])?></td>
                                         <td><?=$row['score_value']?></td>
                                         <td><?=$row['score_datetime']?></td>
