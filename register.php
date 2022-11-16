@@ -23,21 +23,19 @@ if(!empty($_POST)){
         // verif email
         if (empty($r_email)){
             $valid=false;
-            $er_email= "L'email ne peut pas etre vide";
-            echo $er_email;
+            $error= "L'email ne peut pas etre vide";
         }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
         {  $valid= false;
-            $er_email="L'email est invalide";
-            echo $er_email;   
+            $error="L'email est invalide";
         }else{
+            echo 'else';
             $req_email = $dbh->prepare("SELECT user_email FROM Utilisateurs WHERE user_email=?");
             $req_email->bindParam(1, $r_email);
             $req_email->execute();
             if($req_email->rowCount()==0){
                 $email=$_POST['email'];
             }else{
-                $er_email = "l'email existe deja";
-                echo $er_email;
+                $error = "L'email existe deja";
             }
             
         }
@@ -45,13 +43,11 @@ if(!empty($_POST)){
         //verif pseudo
         if (empty($r_pseudo)){
             $valid = false;
-            $er_pseudo = "Le pseudo ne peut pas etre vide";
-            $er_pseudo;
+            $error = "Le pseudo ne peut pas etre vide";
 
         }elseif (!preg_match("`^([a-zA-Z0-9-_]{2,12})$`", $r_pseudo)){
             $valid = false;
-            $er_pseudo="pseudo doit etre valide";
-            echo $er_pseudo;
+            $error="Le pseudo doit etre valide";
         
         }else{
             $req_pseudo = $dbh->prepare("SELECT user_pseudo FROM Utilisateurs WHERE user_pseudo=?");
@@ -60,8 +56,7 @@ if(!empty($_POST)){
             if($req_pseudo->rowCount()==0){
                 $pseudo=$_POST['pseudo'];
             }else{
-                echo $er_pseudo = "le pseudo existe deja";
-                
+                $error = "Le pseudo existe deja";
             }
         }
                 
@@ -70,20 +65,19 @@ if(!empty($_POST)){
         // verif password
         if (empty($r_pass)){
             $valid=false;
-            echo $er_pass="saisissez votre mots de passe";
+            $error="Saisissez votre mots de passe";
         }elseif (!preg_match("`^([a-zA-Z0-9-_]{2,12})$`", $password)){
             $valid=false;
-            $er_pass= "mots de passe faible";
+            $error= "Mot de passe faible";
         }elseif($r_pass != $r_pass2){
             $valid= false;
-            $er_pass= "Le mot de passe doit etre identique";
-            echo $er_pass;
+            $error= "Le mot de passe doit etre identique";
         }else{
             $crypt_password = password_hash($password, PASSWORD_ARGON2ID);
             $password=$_POST['password'];
             
         }
-        if ($valid){
+        if (!$error){
             $user_register_date = date('Y-m-d H:i:s');
             $sql="INSERT INTO Utilisateurs (user_email, user_pseudo, user_password, user_register_date, user_last_connection) VALUES (:user_email, :user_pseudo, :user_password, :user_register_date, :user_last_connection)";
             $stmt = $dbh->prepare($sql);
@@ -122,6 +116,7 @@ if(!empty($_POST)){
                 <input type="text" id="r_pseudo" placeholder="Pseudo" name="pseudo" >
                 <input id="r_pass" type="password" placeholder="Mot de passe" name="password" >
                 <input id="r_pass2" type="password" placeholder="Confirmez mot de passe" name="password2" >
+                <?php if(isset($error)) {?><p id="error-msg"><?= $error ?></p> <?php } ?>
                 <a id="login-to-register" href="./login.php">Se connecter un compte</a>
                 <input class= "button" type="submit" name="inscription" value="Inscription"> 
             </form>
