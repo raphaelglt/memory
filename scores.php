@@ -1,6 +1,7 @@
 <?php 
 //select all the scores from the db
 include('./includes/database.inc.php');
+include('./init.php');
 $sql = file_get_contents('./sql/scoreall.sql');
 $stmt = $dbh->query($sql);
 ?>
@@ -27,41 +28,48 @@ $stmt = $dbh->query($sql);
                 include('./view/header.inc.php'); 
             ?>
             <main>
-                <div id="table-container">
-                <?php
-                    //display scores if here's scores
-                    if (isset($stmt) && $stmt->rowCount()>0) {?>
-                    <table>        
-                        <thead>
-                            <tr>
-                                <th>Jeu</th>
-                                <th>Pseudo</th>
-                                <th>Difficulté</th>
-                                <th>Scores</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                foreach ($stmt as $row) {
-                                    ?><tr>
-                                        <td><a href='memory.php' class='memory-link'><?=$row['game_name']?></a></td>
-                                        <td><?=$row['user_pseudo']?></td>
-                                        <?php //set the first letter as an upper ?>
-                                        <td><?=ucfirst($row['score_level'])?></td>
-                                        <td><?=$row['score_value']?></td>
-                                        <td><?=$row['score_datetime']?></td>
-                                    </tr><?php
-                                }
-                            ?>
-                        </tbody>
-                    </table>
-                    <?php 
-                        } else {
-                            ?><p id="no-score-text">Aucun score n'a été enregistré</p><?php
-                        }
-                    ?>
-                </div>
+                <?php 
+                if (isset($_SESSION['user_id'])) { ?>
+                    <div id="table-container">
+                    <?php
+                        //display scores if here's scores
+                        if (isset($stmt) && $stmt->rowCount()>0) {?>
+                        <table>        
+                            <thead>
+                                <tr>
+                                    <th>Jeu</th>
+                                    <th>Pseudo</th>
+                                    <th>Difficulté</th>
+                                    <th>Scores</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach ($stmt as $row) {
+                                        ?><tr>
+                                            <td><a href='memory.php' class='memory-link'><?=$row['game_name']?></a></td>
+                                            <td><?=$row['user_pseudo']?></td>
+                                            <?php //set the first letter as an upper ?>
+                                            <td><?=ucfirst($row['score_level'])?></td>
+                                            <td><?=$row['score_value']?></td>
+                                            <td><?=$row['score_datetime']?></td>
+                                        </tr><?php
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                        <?php 
+                            } else {
+                                ?><p id="no-score-text">Aucun score n'a été enregistré</p><?php
+                            }
+                        ?>
+                    </div>
+                <?php 
+                } else {
+                    include('./view/disconnected.inc.php');
+                }
+                ?>
             </main>
             <?php
                 include('./view/footer.inc.php');

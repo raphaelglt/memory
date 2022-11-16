@@ -24,10 +24,10 @@ footer{
     background-color: rgb(13, 10, 38);
 }
 h1 {
+    margin-left: 5px;
     font-family: 'Poppins', sans-serif;
     letter-spacing: 1px;
     color: white;
-    position: relative;
 }
 #head p, #head a {
     
@@ -54,6 +54,8 @@ a:link {
 }
 #banner {
     display: flex;
+    align-items: center;
+    justify-content: flex;
     flex: 3;
     background: url("../../assets/images/banner4.jpg") no-repeat center center;
     -webkit-background-size: cover;
@@ -132,4 +134,20 @@ ul {
 }
 #instagram {
     padding: 4px 6px 4px 6px;
+}
+#disconnected_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+#disconnected_container p, #disconnected_container a {
+    margin-top: 40px;
+    color: white;
+}
+#disconnected_container a:hover {
+    color: orange;
 }
