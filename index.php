@@ -1,6 +1,7 @@
 <?php
 //select content for the welcome page
 include('./includes/database.inc.php');
+include('./init.php');
 $sql = file_get_contents('./sql/dynamic_welcome_page.sql');
 $stmt = $dbh->query($sql);
 $result = $stmt->fetchAll();
