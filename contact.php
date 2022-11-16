@@ -37,46 +37,49 @@
 
         <div class="form-container">
             <form method ="post">
-                <input type="text" name="nom" placeholder="Nom" id="form">
-                <input type="text" name="email" placeholder="Email" id="form"></br>
-                <input type="text" name="sujet" placeholder="Sujet" id="form"></br>
-                <textarea name="comm" placeholder="Message" id="form"></textarea></br>
-                <button id="buttonsend"><a href="">Envoyer</a></button>
+                <input type="text" name="nom" placeholder="Nom" id="form" />
+                <input type="text" name="email" placeholder="Email" id="form" /></br>
+                <input type="text" name="sujet" placeholder="Sujet" id="form" /></br>
+                <textarea name="message" placeholder="Message" id="form"></textarea></br>
+                <input type='submit' id="buttonsend" name="submit" />
             </form>
             <p>
                 <?php
-                if(!empty($_POST)){
-
+                if(isset($_POST['submit'])){
+                    
                     if (empty($_POST["nom"])) {
-
                         echo '<p style ="color:white"> Veuillez vérifier le formulaire - veuillez saisir votre nom.';
 
                     }
                     
                     else if (!empty($_POST["email"])){
-                        if (!empty($_POST["email"])) {
-                            $point = strpos($_POST['nom'], ".");
-                            $arobase = strpos($_POST['nom'], "@");
-                            if ($point === false)
-                                echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un point.</p>';
-                            else if ($arobase === false)
-                                echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
-                        } else {
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un email.</p>';
+                        $point = strpos($_POST['email'], ".");
+                        $arobase = strpos($_POST['email'], "@");
+                        if ($point === false)
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un point.</p>';
+                        else if ($arobase === false)
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
+                        else {
+                            if(empty($_POST["sujet"])){
+                                echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un sujet.</p>';
+                            } else {
+                                if(strlen($_POST['message']) < 15){
+                                    echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un message plus long.</p>';
+                                } else {
+                                    echo "Envoie du message";
+                                }
+                            }
                         }
+                    } else {
+                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un email.</p>';
                     }
-
-                    else if(empty($_POST["sujet"])){
-                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un sujet.</p>';
-                    }
-
-                    else if(strlen($_POST['comm']) < 15){
-                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un message plus long.</p>';
-                    }
-
+                }else{
+                    echo '<p style ="color:white">Veuillez vérifier le formulaire</p>';
                 }
 
                 ?>
+
+
             </p>
         </div>
     </section>
