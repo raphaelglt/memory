@@ -12,8 +12,6 @@ header {
     display: flex;
     flex: 1;
     flex-direction: column;
-}
-header{ 
     min-height:50px;
 }
 main {
@@ -30,9 +28,6 @@ h1 {
     letter-spacing: 1px;
     color: white;
     position: relative;
-    right: 2%;
-    
-   
 }
 #head p, #head a {
     

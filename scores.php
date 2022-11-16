@@ -1,3 +1,10 @@
+<?php 
+//select all the scores from the db
+include('./includes/database.inc.php');
+$sql = file_get_contents('./sql/scoreall.sql');
+$stmt = $dbh->query($sql);
+?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -21,7 +28,10 @@
             ?>
             <main>
                 <div id="table-container">
-                    <table>
+                <?php
+                    //display scores if here's scores
+                    if (isset($stmt) && $stmt->rowCount()>0) {?>
+                    <table>        
                         <thead>
                             <tr>
                                 <th>Jeu</th>
@@ -32,29 +42,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><a href="memory.php" class="memory-link">The Power Of Memory</a></td>
-                                <td>👑 Moi</td>
-                                <td>Simple</td>
-                                <td>10</td>
-                                <td>31/10/2022 10:53:08</td>
-                            </tr>
-                            <tr>
-                                <td><a href="memory.php" class="memory-link">The Power Of Memory</a></td>
-                                <td>ElGato</td>
-                                <td>Intermédiaire</td>
-                                <td>25</td>
-                                <td>12/10/2022 19:27:37</td>
-                            </tr>
-                            <tr>
-                                <td><a href="memory.php" class="memory-link">The Power Of Memory</a></td>
-                                <td>Moi</td>
-                                <td>Impossible</td>
-                                <td>300</td>
-                                <td>30/10/2022 23:09:49</td>
-                            </tr>
+                            <?php
+                                foreach ($stmt as $row) {
+                                    ?><tr>
+                                        <td><a href='memory.php' class='memory-link'><?=$row['game_name']?></a></td>
+                                        <td><?=$row['user_pseudo']?></td>
+                                        <?php //set the first letter as an upper ?>
+                                        <td><?=ucfirst($row['score_level'])?></td>
+                                        <td><?=$row['score_value']?></td>
+                                        <td><?=$row['score_datetime']?></td>
+                                    </tr><?php
+                                }
+                            ?>
                         </tbody>
                     </table>
+                    <?php 
+                        } else {
+                            ?><p id="no-score-text">Aucun score n'a été enregistré</p><?php
+                        }
+                    ?>
                 </div>
             </main>
             <?php

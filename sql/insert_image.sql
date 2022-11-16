@@ -1,0 +1,1 @@
+INSERT IGNORE INTO Images (image_id, image_theme, image_url) VALUES (:image_id, :image_theme, :image_url)
