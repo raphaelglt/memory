@@ -1,17 +1,18 @@
 <?php
 include('./includes/database.inc.php');
+include('./init.php');
 
 $sql = file_get_contents('./sql/get_images.sql');
 $stmt = $dbh->prepare($sql);
-$theme = "chick";
+$theme = "capybara";
 $stmt->bindParam(':image_theme', $theme);
 $stmt->execute();
 
-$memory_size = 4;
+$memory_size = 10;
 $images_needed = intdiv(pow($memory_size, 2),2);
 
 $row_count = $stmt->rowCount();
-if ($row_count<=$images_needed) {
+if ($row_count<$images_needed) {
     $difference = $images_needed-$row_count;
     if ($memory_size>=10) {
         $photo_nb = 50;
@@ -48,8 +49,10 @@ if ($row_count<=$images_needed) {
                 $stmt->bindParam(':image_url', $elt['src']['original']);
                 $stmt->execute();
             }
-            $next_link = $decode['next_page']; 
-        }    
+            if (!empty($decode['next_page'])) $next_link = $decode['next_page']; 
+        } else {
+            echo "Error";
+        }
     }
 }
 $sql = file_get_contents('./sql/select_chat.sql');
