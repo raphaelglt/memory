@@ -1,126 +1,69 @@
  body{
-    margin: 0;
-   
     font-family: "Poppins", "sans-serif";
-    font-weight: 510;
-    
-    
-}
-
-
-#container-connexion{
-    margin-left: auto;
-    margin-right: auto;
-    
-
-
-    display: flex;
-    flex: 1;
-    height: auto;
-    flex-direction: column;
-    background-color: rgb(15, 13, 46);
-    top: 20%;
-    margin: auto;
-    
-
 }
 #container-inscription{
-    margin-left: auto;
-    margin-right: auto;
-
-
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
     height: auto;
     flex-direction: column;
     background-color: rgb(15, 13, 46);
     top: 20%;
     margin: auto;
-   
 }
- .input {
+.input {
     display: flex;
     flex: auto;
-    margin: 10px;
-    margin-bottom: 20px;
-    
     color: white;
-   
-    
-
     width: 400px;
     height: 1cm;
     border-radius: 4px;
-    
-    
     background-color: rgb(39, 37, 68);
-    padding: 2px 4px;
+    
     margin-top: 20px;
     text-align: left;
 }
-
-
-
-input[type=text] {
-    padding: 2cm ,4cm;
-    font-size: 0.70em;
-    outline: none;
-    position: relative;
-    display: flex;
-    flex: auto;
-    width: 400px;
-    
+input {
     color: white;
+    height: 1cm;
+    border-radius: 4px;
     background-color: rgb(39, 37, 68);
-    border: transparent;
-   
-    
-    
-}
-input[type=password] {
-    font-size: 0.70em;
-    color: white;
-    position: relative;
+    margin-top: 20px;
+    text-align: left;
+    font-size: 18px;
     outline: none;
-    display: flex;
-    flex: auto;
     width: 400px;
-    background-color:rgb(39, 37, 68);
+    padding-left: 6px;
     border: transparent;
-    
-    
+    font-family: sans-serif;
 }
 .button{
-    position: relative;
-
-    display: block;
     background-color: orange;
-    margin-bottom: 15px;
-    padding: 40px , 40px;
-    border-radius: 3px solid;
     border-radius: 5px;
     border: none;
-    
-    font-size: 0.5em;
-    font-weight: 100;
-    
     width: 100px;
     height: 40px;
-
-    
-
-
+    padding-right: 5px;
+    font-family: sans-serif;
+    text-align: center;
 }
 .login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-top: 1cm;
     margin-bottom: 1cm;
-    width: 325px;
-    text-align: center;
-    margin: O auto;
     padding: 20px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-70%);
     font-size: 2em;
+}
+#login-to-register {
+    margin-top: 20px;
+    font-size: 14px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+#login-to-register:hover {
+    color: orange;
 }
