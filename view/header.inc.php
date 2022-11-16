@@ -2,10 +2,14 @@
     <div id="head">
         <p>The Power Of Memory</p>
         <div id="links">
-            <a href="index.php">ACCUEIL</a>
-            <a href="memory.php">JEU</a>
-            <a href="scores.php">SCORES</a>
-            <a href="contact.php">NOUS CONTACTER</a>
+            <?php if(!empty($_SESSION['user_id'])) { ?>
+                <a href="index.php">ACCUEIL</a>
+                <a href="memory.php">JEU</a>
+                <a href="scores.php">SCORES</a>
+                <a href="contact.php">NOUS CONTACTER</a>
+            <?php } else {
+                ?> <a href="login.php">SE CONNECTER</a> <?php
+            } ?>    
         </div>
     </div>
     <div id="banner">

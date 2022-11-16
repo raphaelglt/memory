@@ -1,6 +1,7 @@
 <?php 
 //select all the scores from the db
 include('./includes/database.inc.php');
+include('./init.php');
 $sql = file_get_contents('./sql/scoreall.sql');
 $stmt = $dbh->query($sql);
 ?>
