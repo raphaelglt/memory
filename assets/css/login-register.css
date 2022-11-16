@@ -67,3 +67,9 @@ input {
 #login-to-register:hover {
     color: orange;
 }
+#error-msg {
+    font-size: 16px;
+    color: rgb(239, 35, 35);
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
+}
