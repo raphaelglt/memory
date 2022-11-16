@@ -1,0 +1,1 @@
+SELECT * FROM Images WHERE image_theme = :image_theme;
