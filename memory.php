@@ -2,6 +2,27 @@
 include('./includes/database.inc.php');
 $sql = file_get_contents('./sql/select_chat.sql');
 $stmt = $dbh->query($sql);
+
+$url = 'https://kvstore.p.rapidapi.com/collections';
+$collection_name = 'RapidAPI';
+$request_url = $url . '/' . $collection_name;
+
+$curl = curl_init("https://api.pexels.com/v1/search?query=Paris&page=3");
+
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_HTTPHEADER, [
+  'X-RapidAPI-Host: kvstore.p.rapidapi.com',
+  'Authorization: 563492ad6f9170000100000193f0dcb4e9494a82b0b266c32b3448e7',
+  'Content-Type: application/json'
+]);
+
+$response = curl_exec($curl);
+curl_close($curl);
+
+$decode = json_decode($response, true);
+foreach ($decode['photos'] as $elt) {
+    echo $elt['id'] . PHP_EOL;
+}
 ?>
 <!DOCTYPE html>
 
