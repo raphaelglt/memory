@@ -1,6 +1,5 @@
 <?php 
 include('./init.php');
-session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="en">
