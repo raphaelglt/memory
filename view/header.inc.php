@@ -7,6 +7,7 @@
                 <a href="memory.php">JEU</a>
                 <a href="scores.php">SCORES</a>
                 <a href="contact.php">NOUS CONTACTER</a>
+                <a href="myaccount.php"><?= $_SESSION['user_pseudo'] ?></a>
             <?php } else {
                 ?> <a href="login.php">SE CONNECTER</a> <?php
             } ?>    

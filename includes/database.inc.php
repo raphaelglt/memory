@@ -1,10 +1,15 @@
 <?php
 /* Connect to a MySQL database using driver invocation */
-$dsn = 'mysql:dbname=memory;host=localhost';
-$user = 'root';
-$password = 'root';
+try {
+    $dsn = 'mysql:dbname=memory;host=localhost';
+    $user = 'root';
+    $password = 'root';
 
-$dbh = new PDO($dsn, $user, $password);
+    $dbh = new PDO($dsn, $user, $password);
+} catch (\Throwable $th) {
+    echo $th;
+}
+    
 //simple query
 
 //$stmt = $dbh->query("SELECT * FROM Utilisateurs WHERE user_id=1");
