@@ -24,10 +24,10 @@ footer{
     background-color: rgb(13, 10, 38);
 }
 h1 {
+    margin-left: 5px;
     font-family: 'Poppins', sans-serif;
     letter-spacing: 1px;
     color: white;
-    position: relative;
 }
 #head p, #head a {
     
@@ -54,6 +54,8 @@ a:link {
 }
 #banner {
     display: flex;
+    align-items: center;
+    justify-content: flex;
     flex: 3;
     background: url("../../assets/images/banner4.jpg") no-repeat center center;
     -webkit-background-size: cover;
