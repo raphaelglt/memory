@@ -21,18 +21,15 @@ if(!empty($_POST)){
         //verif email
         if (empty($r_email)){
             $valid=false;
-            $er_email= "L'email ne peut pas etre vide";
-            echo $er_email;
+            $error= "L'email ne peut pas etre vide";
         }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
         {   $valid= false;
-            $er_email="L'email est invalide";
-            echo $er_email;
+            $error="L'email est invalide";
         }
 
         if (empty($r_pass)){
             $valid=false;
-            $r_pass="saisissez votre mots de passe";
-            echo $r_pass;
+            $error="Saisissez votre mots de passe";
         }
 
         if ($valid){
@@ -42,7 +39,7 @@ if(!empty($_POST)){
             $req_pass->execute();
             $row = $req_pass->fetch();
             if ($req_pass->rowCount()==0) {
-                echo "vide";
+                $error = "Ce mot de passe n'existe pas";
             } else {
                 $db_password = $row['user_password'];
             }
@@ -83,7 +80,8 @@ if(!empty($_POST)){
         <div id="container-connexion">
             <form class="login" method="post" action="">
                 <input type="text" id="r_email" placeholder="Email" name="email"  >
-                <input id="r_pass" type="password" placeholder="Mot de passe" name="password" >
+                <input id="r_pass" type="password" placeholder="Mot de passe" name="password">
+                <?php if(isset($error)) {?><p id="error-msg"><?= $error ?></p> <?php } ?>
                 <a id="login-to-register" href="./register.php">Créer un compte</a>
                 <input class= "button" type="submit" name="login" value="Connexion">
             </form>
