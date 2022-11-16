@@ -5,6 +5,7 @@ include('./init.php');
 $sql = file_get_contents('./sql/dynamic_welcome_page.sql');
 $stmt = $dbh->query($sql);
 $result = $stmt->fetchAll();
+var_dump($result);
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
