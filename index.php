@@ -4,7 +4,6 @@ include('./includes/database.inc.php');
 $sql = file_get_contents('./sql/dynamic_welcome_page.sql');
 $stmt = $dbh->query($sql);
 $result = $stmt->fetchAll();
-var_dump($result);
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -107,19 +106,19 @@ var_dump($result);
                     <img src="assets/images/watchdogs2.png" class="gridimg2" id="border" alt="watchdogs 2">
                 </div>
                 <div class="rectangle1" id="border">
-                    <p id="stats"><?php if(empty($result)) { echo $result[0]['count_scores']; } else { echo "0"; } ?></p>
+                    <p id="stats"><?php if(!empty($result[0]['count_scores'])) { echo $result[0]['count_scores']; } else { echo "0"; } ?></p>
                     <p id="intitule">Parties Jouées</p>
                 </div>
                 <div class="rectangle2" id="border">
-                    <p id="stats"><?php if(empty($result)) { echo $result[0]['users_connected']; } else { echo "0"; } ?></p>
+                    <p id="stats"><?php if(!empty($result[0]['users_connected'])) { echo $result[0]['users_connected']; } else { echo "0"; } ?></p>
                     <p id="intitule">Joueurs Connectés</p>
                 </div>
                 <div class="rectangle3" id="border">
-                    <p id="stats"><?php if(empty($result)) { echo $result[0]['best_score']; } else { echo "Aucun"; } ?></p>
+                    <p id="stats"><?php if(!empty($result[0]['best_score'])) { echo $result[0]['best_score']; } else { echo "Aucun"; } ?></p>
                     <p id="intitule">Temps Record (Impossible)</p>
                 </div>
                 <div class="rectangle4" id="border">
-                    <p id="stats"><?php if(empty($result)) { echo $result[0]['count_users']; } else { echo "0"; } ?></p>
+                    <p id="stats"><?php if(!empty($result[0]['count_users'])) { echo $result[0]['count_users']; } else { echo "0"; } ?></p>
                     <p id="intitule">Joueurs Inscrits</p>
                 </div>
             </div>
