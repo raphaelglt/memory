@@ -21,12 +21,15 @@
                 <div id="modif-mail">
                     <h1>Modifier le mail</h1>
                     <div class="input1">
-                        <input type="text" id="email" placeholder="Ancien mail" >
-                        <input type="text" id="email" placeholder="Nouveu mail" >
-                        <input type="password" id="email" placeholder="Mot de passe" >
-                    </div>
-                    <input class="button1" href="#" type="submit" value="Modifier">
+                        <form method="post">
+                            <input type="text" id="email" name="oldemail" placeholder="Ancien mail" >
+                            <input type="text" id="email" name="newemail" placeholder="Nouveu mail" >
+                            <input type="password" id="email" placeholder="Mot de passe" >
+                            <input class="button1" type="submit" name="submitmail" value="modifier">
+                        </form>
+                    </div>                    
                 </div>
+
                 <div id="modif-password">
                     <h1>Modifier le mot de passe</h1>
                     <div class="input1">
@@ -38,7 +41,40 @@
                 </div>
             </div>
         </div>
+
+        <div>
+            <p>
+            <?php
+                var_dump($_POST);
+                if(isset($_POST['submitmail'])){
+
+                    if($_SESSION("user_id")){
+                        if("Utilisateurs.user_id" != "Utilisateurs.user_email"){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email est incorrect.</p>';
+                        }
+                    }
+                    else if (!empty($_POST["newemail"])){
+                        $point = strpos($_POST['newemail'], ".");
+                        $arobase = strpos($_POST['newemail'], "@");
+                        if ($point === false){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un point.</p>';
+                        }else if ($arobase === false){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
+                        
+                        }else{
+                            return true;
+                        }
+                    }
+                }
+            ?>
+            </p>
+        </div>
         </main>
+
+        
+
+
+
         <?php
             include('./view/footer.inc.php');
         ?>
