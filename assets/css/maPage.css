@@ -133,3 +133,19 @@ ul {
 #instagram {
     padding: 4px 6px 4px 6px;
 }
+#disconnected_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+#disconnected_container p, #disconnected_container a {
+    margin-top: 40px;
+    color: white;
+}
+#disconnected_container a:hover {
+    color: orange;
+}
