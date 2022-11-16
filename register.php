@@ -26,6 +26,7 @@ if(!empty($_POST)){
         { 
             $error="L'email est invalide";
         }else{
+            echo 'else';
             $req_email = $dbh->prepare("SELECT user_email FROM Utilisateurs WHERE user_email=?");
             $req_email->bindParam(1, $r_email);
             $req_email->execute();
