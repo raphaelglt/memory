@@ -5,7 +5,6 @@ include('./includes/database.inc.php');
 
 if(!empty($_POST)){
     extract($_POST);
-    $valid = true;
         
        
     if (isset($_POST['inscription'])){
@@ -22,13 +21,11 @@ if(!empty($_POST)){
             
         // verif email
         if (empty($r_email)){
-            $valid=false;
             $error= "L'email ne peut pas etre vide";
         }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-        {  $valid= false;
+        { 
             $error="L'email est invalide";
         }else{
-            echo 'else';
             $req_email = $dbh->prepare("SELECT user_email FROM Utilisateurs WHERE user_email=?");
             $req_email->bindParam(1, $r_email);
             $req_email->execute();
@@ -42,11 +39,9 @@ if(!empty($_POST)){
         
         //verif pseudo
         if (empty($r_pseudo)){
-            $valid = false;
             $error = "Le pseudo ne peut pas etre vide";
 
         }elseif (!preg_match("`^([a-zA-Z0-9-_]{2,12})$`", $r_pseudo)){
-            $valid = false;
             $error="Le pseudo doit etre valide";
         
         }else{
@@ -64,13 +59,10 @@ if(!empty($_POST)){
 
         // verif password
         if (empty($r_pass)){
-            $valid=false;
             $error="Saisissez votre mots de passe";
         }elseif (!preg_match("`^([a-zA-Z0-9-_]{2,12})$`", $password)){
-            $valid=false;
             $error= "Mot de passe faible";
         }elseif($r_pass != $r_pass2){
-            $valid= false;
             $error= "Le mot de passe doit etre identique";
         }else{
             $crypt_password = password_hash($password, PASSWORD_ARGON2ID);
