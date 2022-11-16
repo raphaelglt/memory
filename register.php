@@ -112,7 +112,6 @@ if(!empty($_POST)){
                 <a id="login-to-register" href="./login.php">Se connecter un compte</a>
                 <input class= "button" type="submit" name="inscription" value="Inscription"> 
             </form>
-
         </div>
         <?php 
             include('./view/footer.inc.php');
