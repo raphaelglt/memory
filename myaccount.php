@@ -1,3 +1,7 @@
+<?php 
+include('./init.php');
+?>
+
 <!DOCTYPE html>   
 <html>
     <head>  
@@ -21,24 +25,74 @@
                 <div id="modif-mail">
                     <h1>Modifier le mail</h1>
                     <div class="input1">
-                        <input type="text" id="email" placeholder="Ancien mail" >
-                        <input type="text" id="email" placeholder="Nouveu mail" >
-                        <input type="password" id="email" placeholder="Mot de passe" >
-                    </div>
-                    <input class="button1" href="#" type="submit" value="Modifier">
+                        <form method="post">
+                            <input type="text" id="email" name="oldemail" placeholder="Ancien mail" >
+                            <input type="text" id="email" name="newemail" placeholder="Nouveu mail" >
+                            <input type="password" id="email" placeholder="Mot de passe" >
+                            <input class="button1" type="submit" name="submitmail" value="Modifier">
+                        </form>
+                    </div>                    
                 </div>
+
                 <div id="modif-password">
                     <h1>Modifier le mot de passe</h1>
                     <div class="input1">
-                        <input id="mot de passe" type="password" placeholder="Ancien mot de passe" >
-                        <input id="mot de passe" type="password" placeholder="Nouveau mot de passe" >
-                        <input id="mot de passe" type="password" placeholder="Confirmez mot de passe">
+                        <form method="post">
+                            <input id="mot de passe" type="password" name="oldpassw" placeholder="Ancien mot de passe" >
+                            <input id="mot de passe" type="password" name="newpassw1" placeholder="Nouveau mot de passe" >
+                            <input id="mot de passe" type="password" name="newpassw2" placeholder="Confirmez mot de passe">
+                            <input class="button1" href="#" type="submit" name="submitpassw" value="Modifier">
+                        </form>
                     </div>
-                    <input class="button1" href="#" type="submit" value="Modifier">
                 </div>
             </div>
         </div>
+
+        <div>
+            <p>
+            <?php
+                include('./includes/database.inc.php'); 
+
+                var_dump($_POST);
+                if(isset($_POST['submitmail'])){
+
+                    /*if($_SESSION("user_id")){
+                        if("Utilisateurs.user_id" != "Utilisateurs.user_email"){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email est incorrect.</p>';
+                        }
+                    }
+                    else*/
+                    if (!empty($_POST["newemail"])){
+                        $point = strpos($_POST['newemail'], ".");
+                        $arobase = strpos($_POST['newemail'], "@");
+                        if ($point === false){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un point.</p>';
+                        }else if ($arobase === false){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
+                        
+                        }else{
+                            return true;
+                        }
+                    }
+                }
+                if(isset($_POST["submitpassw"])){
+                    if(!empty($_POST["newpassw1"])){
+                        $req = $bdd ->prepare('SELECT user_password FROM Utilisateurs WHERE user_password=?');  
+                        $req ->execute([$_POST['newpassw1']]);
+                        $user = $req->fetch();  
+                    }else{
+                        echo '<p style ="color:white">Veuillez vérifier le formulaire - mot de passe incorrect.</p>';
+
+                        if($_POST["newpassw1"] == $_POST["newpassw2"]){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un mot de passe différent.</p>';
+                        }
+                    }
+                }
+            ?>
+            </p>
+        </div>
         </main>
+
         <?php
             include('./view/footer.inc.php');
         ?>
