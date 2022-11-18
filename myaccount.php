@@ -1,5 +1,6 @@
 <?php 
 include('./init.php');
+echo $_SESSION["user_id"];
 ?>
 
 <!DOCTYPE html>   
@@ -70,29 +71,31 @@ include('./init.php');
                         }else if ($arobase === false){
                             echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
                         
-                        }else{
-                            return true;
                         }
                     }
                 }
                 if(isset($_POST["submitpassw"])){
-                    if(!empty($_POST["newpassw1"])){
-                        $req = $bdd ->prepare('SELECT user_password FROM Utilisateurs WHERE user_password=?');  
-                        $req ->execute([$_POST['newpassw1']]);
-                        $user = $req->fetch();  
-                    }else{
-                        echo '<p style ="color:white">Veuillez vérifier le formulaire - mot de passe incorrect.</p>';
+                    if(empty($_POST['oldpassw'])){ 
+                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez entrer votre mot de passe.</p>';
+                    }else { 
+                        $req = $dbh->prepare('SELECT user_password FROM Utilisateurs WHERE user_id =?');
+                        $req->bindParam(1, $_SESSION['user_id']);
+                        $req ->execute();  
+                        $user = $req->fetch();
 
-                        if($_POST["newpassw1"] == $_POST["newpassw2"]){
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un mot de passe différent.</p>';
-                        }
-                    }
+                        if(password_verify($_POST['oldpassw'], $user['user_password'])){
+                            echo '<p style ="color:white">Ancien mot de passe correct.</p>';
+                        }  
+                        else {  
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre mot de passe est incorrect.</p>';
+                        }  
+        
+                    }  
                 }
             ?>
             </p>
         </div>
         </main>
-
         <?php
             include('./view/footer.inc.php');
         ?>
