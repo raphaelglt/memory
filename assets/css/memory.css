@@ -1,10 +1,12 @@
 #table-container {
-    margin: 0;
+    margin: 40px 0;
     padding: 0;
     width: 100%;
 }
 #table {
+    margin: 40px;
     overflow-x: scroll;
+    display: none;
 }
 .row {
     display: flex;
@@ -25,7 +27,7 @@ td {
     border-radius: 5px;
 }
 main {
-    margin: 40px;
+    margin: 0;
 }
 #chat {
     margin: 25px;
@@ -159,4 +161,40 @@ main {
 #no-message-text {
     font-size: 15px;
     font-family: "Poppins", sans-serif;
+}
+#select-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#select-content {
+    display: flex;
+    flex-direction: row;
+}
+#timer-container {
+    background-color: rgb(13, 10, 38);
+    color: #40c437;
+    font-size: 30px;
+    font-family: consolas, monospace;
+    padding: 20px;
+    text-align: center;
+}
+select {
+    border: none;
+    border-radius: 1px;
+    height: 25px;
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+}
+button {
+    margin-top: 20px;
+    padding: 5px 10px;
+}
+#error-message {
+    font-size: 16px;
+    color: rgb(239, 35, 35);
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
 }
