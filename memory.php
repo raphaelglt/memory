@@ -2,6 +2,9 @@
 include('./includes/database.inc.php');
 include('./init.php');
 
+$stmt = $dbh->query('SELECT DISTINCT image_theme FROM Images');
+$themes = $stmt->fetchAll();
+
 if (isset($_SESSION['user_id'])) {
     $sql = file_get_contents('./sql/get_images.sql');
     $stmt = $dbh->prepare($sql);
@@ -61,7 +64,6 @@ if (isset($_SESSION['user_id'])) {
 }    
 ?>
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="utf-8">
@@ -80,20 +82,37 @@ if (isset($_SESSION['user_id'])) {
                 if (isset($_SESSION['user_id'])) {
             ?>
             <main>
-                <div id="table-container">
-                    <div id="table">
-                        <?php 
-                            $case = 4;
-                            for ($x = 0; $x<$case; $x++) {
-                                ?><div class="row"><?php
-                                for ($y = 0; $y<$case; $y++) {
-                                    ?><div class="cell"></div><?php
-                                }
-                                ?></div><?php
-                            }
-                        ?>
+                <div>
+                    <div id="timer-container">
+                        <p id="timer">00:00:00</p>
                     </div>
-                </div>
+                    <div id="table-container">
+                        <div id="select-container">
+                            <div id="select-content">
+                                <select id="select-difficulty">
+                                    <option selected value="">--Choisissez la difficulté--</option>
+                                    <option value="2">Facile</option>
+                                    <option value="4">Normale</option>
+                                    <option value="10">Difficile</option>
+                                    <option value="20">Impossible</option>
+                                </select>
+                                <select id="select-theme">
+                                    <option selected value="">--Choisissez le thème--</option>
+                                    <?php
+                                        if (!empty($themes)) {
+                                            foreach ($themes as $elt) {
+                                                ?><option value=<?= $elt['image_theme'] ?>><?= ucfirst($elt['image_theme']) ?></option><?php
+                                            }
+                                        }    
+                                    ?>
+                                </select>
+                            </div>    
+                            <button onclick='onButton()'>Commencer</button>
+                            <p id="error-message"></p>
+                        </div>    
+                        <div id="table"></div>
+                    </div>
+                </div>    
             </main>
             <article id="chat">
                 <div id="chat-head">
@@ -149,3 +168,4 @@ if (isset($_SESSION['user_id'])) {
         </div>    
     </body>
 </html>
+<script src="./assets/js/memory.js"></script>
