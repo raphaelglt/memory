@@ -67,7 +67,6 @@ echo $_SESSION["user_id"];
                             echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un point.</p>';
                         }else if ($arobase === false){
                             echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
-                        
                         }
                     }else{
                         $req1 = $dbh->prepare('SELECT user_email FROM Utilisateurs WHERE user_id=?');
@@ -87,8 +86,21 @@ echo $_SESSION["user_id"];
                 if(isset($_POST["submitpassw"])){
                     if(empty($_POST['oldpassw'])){ 
                         echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez entrer votre mot de passe.</p>';
-                    
-                    
+                    }else if(isset($_POST['newpassw1'])){
+                        if(!preg_match("`^([a-zA-Z0-9-_]{8,})$`", $_POST['newpassw1'])){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez confirmer votre nouveau mot de passe.</p>';
+                        }else if($_POST['newpass1'] != $_POST['newpass2']){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre confirmation de mot passe est incorrect.</p>';
+                        }else{
+                            echo '<p style ="color:white"> Nouveau mot de passe créé avec succès.</p>';
+
+                            $sql="UPDATE Utilisateurs (user_email, user_pseudo, user_password, user_register_date, user_last_connection) VALUES (:user_email, :user_pseudo, :user_password, :user_register_date, :user_last_connection)";
+                            $stmt = $dbh->prepare($sql);
+                            $stmt->bindParam (':user_password',$_POST['user_password']);
+                            $stmt->execute();
+                        }
+                            
+                        
                     
                     }else { 
                         $req2 = $dbh->prepare('SELECT user_password FROM Utilisateurs WHERE user_id =?');
