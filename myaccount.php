@@ -57,13 +57,10 @@ echo $_SESSION["user_id"];
                 var_dump($_POST);
                 if(isset($_POST['submitmail'])){
 
-                    /*if($_SESSION("user_id")){
-                        if("Utilisateurs.user_id" != "Utilisateurs.user_email"){
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email est incorrect.</p>';
-                        }
+                    if(empty($_POST['oldemail'])){
+                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez entrer votre email.</p>';
                     }
-                    else*/
-                    if (!empty($_POST["newemail"])){
+                    else if (!empty($_POST["newemail"])){
                         $point = strpos($_POST['newemail'], ".");
                         $arobase = strpos($_POST['newemail'], "@");
                         if ($point === false){
@@ -72,18 +69,34 @@ echo $_SESSION["user_id"];
                             echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
                         
                         }
+                    }else{
+                        $req1 = $dbh->prepare('SELECT user_email FROM Utilisateurs WHERE user_id=?');
+                        $req1->bindParam(1, $_SESSION['user_id']);
+                        $req1->execute();
+                        $user1 = $req1->fetch();
+
+                        $email = test_input($_POST["oldemail"]);
+                        if ($email == $user1) {
+                            echo '<p style ="color:white">Ancien mail correct.</p>';
+                        }
+                        else {  
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email est incorrect.</p>';
+                        } 
                     }
                 }
                 if(isset($_POST["submitpassw"])){
                     if(empty($_POST['oldpassw'])){ 
                         echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez entrer votre mot de passe.</p>';
+                    
+                    
+                    
                     }else { 
-                        $req = $dbh->prepare('SELECT user_password FROM Utilisateurs WHERE user_id =?');
-                        $req->bindParam(1, $_SESSION['user_id']);
-                        $req ->execute();  
-                        $user = $req->fetch();
+                        $req2 = $dbh->prepare('SELECT user_password FROM Utilisateurs WHERE user_id =?');
+                        $req2->bindParam(1, $_SESSION['user_id']);
+                        $req2->execute();  
+                        $user2 = $req2->fetch();
 
-                        if(password_verify($_POST['oldpassw'], $user['user_password'])){
+                        if(password_verify($_POST['oldpassw'], $user2['user_password'])){
                             echo '<p style ="color:white">Ancien mot de passe correct.</p>';
                         }  
                         else {  
