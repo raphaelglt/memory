@@ -49,7 +49,10 @@ echo $_SESSION['user_id'];
             </div>
         </div>
         
-        <button class="button1"><a href="deconnect.php">Se déconnecter</a></button>
+        <div class="align-button">
+            <button class="button2"><a href="deconnect.php">Se déconnecter</a></button>
+        </div>
+            
         
             
         <div>
