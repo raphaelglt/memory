@@ -28,7 +28,22 @@ function onButton() {
         selectContainer.style.display = "none";
         table.style.display = "block";
 
-        
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonResponse = JSON.parse(this.responseText);
+                //console.log(jsonResponse);
+                for (let elt of jsonResponse) {
+                    console.log(elt['image_url']);
+                }
+            } else {
+                console.log('Error')
+                console.log("req : includes/get_theme_images.php?theme="+themeValue+"&size="+difficultyValue);
+            }
+        };
+        xmlhttp.open("GET","includes/get_theme_images.php?theme="+themeValue+"&size="+difficultyValue,true);
+        xmlhttp.responseType = "text";
+        xmlhttp.send();
 
         if(paused){
             paused = false;
@@ -68,3 +83,5 @@ function updateTime(){
         return (("0") + unit).length > 2 ? unit : "0" + unit;
     }
 }
+
+//Mounir
