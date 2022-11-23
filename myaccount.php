@@ -50,7 +50,9 @@ echo $_SESSION['user_id'];
         </div>
 
         
-
+        <input class="button1" href="#" type="submit" name="submitdeco" value="Se déconnecter">
+        
+            
         <div>
             <p>
             <?php
