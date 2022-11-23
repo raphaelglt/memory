@@ -85,3 +85,11 @@ function updateTime(){
 }
 
 //Mounir
+
+var xml = new XMLHttpRequest();
+xml.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200){
+
+}
+}
+
