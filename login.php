@@ -33,17 +33,17 @@ if(!empty($_POST)){
         }
 
         if ($valid){
-            echo "validate !";
+            
             $req_pass = $dbh->prepare("SELECT user_password, user_id FROM Utilisateurs WHERE user_email =?");
             $req_pass->bindParam(1, $r_email);
             $req_pass->execute();
             $row = $req_pass->fetch();
             if ($req_pass->rowCount()==0) {
-                $error = "Ce mot de passe n'existe pas";
+                $error = "l'email ou le mots de passe est incorrect";
             } else {
-                $db_password = $row['user_password'];
+                $password = $row['user_password'];
             }
-            if(password_verify($r_pass, $db_password)) {
+            if(password_verify($r_pass, $password)) {
                 $req = $dbh->prepare("SELECT * FROM Utilisateurs WHERE user_id =?");
             
                 $req->bindParam(1, $row['user_id']);
@@ -56,7 +56,7 @@ if(!empty($_POST)){
                 $_SESSION['user_pseudo'] =$row['user_pseudo'];
                 header ('Location: index.php');   
             } else {
-                echo "l'email ou le mots de passe est incorrect";
+                $error = "l'email ou le mots de passe est incorrect";
             }                              
         }
     }
