@@ -140,6 +140,43 @@ $stmt = $dbh->query($sql);
 
                     ?>
 
+                    <?php
+                     // precaution de securité 
+                     $user_message_date = date('Y-m-d H:i:s');
+                     $error=false;
+                     
+                        if(!empty($_POST)){
+                            extract($_POST);
+                            if (isset($_POST['envoyer'])){
+                                $message_id = htmlentities(trim($message));
+                               
+                                if (preg_match("`^([a-zA-Z0-9-_]{1,200})$`", $message)){
+                                    $error=true;
+                                    $error = "message trop lent";
+
+                                }elseif(!$error){
+                                    $sql = "SELECT game_id FROM Jeux WHERE game_name = 'The Power Of Memory'";
+                                    $gameid = $dbh->query($sql);
+                                    $game_id = $gameid->fetch();
+                                    $message = $_POST['message'];
+                                    $sql = "INSERT INTO Messages (message_id, message_game_id, message_user_id, message_value, message_datetime)
+                                    VALUES (NULL, :message_game_id , :message_user_id, :message_value, :message_datetime)";
+                                    $send_message = $dbh->prepare($sql);
+                                    $send_message->bindParam(':message_game_id',$game_id['game_id']);
+                                    $send_message->bindParam(':message_user_id',$_SESSION['user_id']);
+                                    $send_message->bindParam(':message_value',$message);
+                                    $send_message->bindParam(':message_datetime',$user_message_date);
+                                    $send_message->execute();
+                                }
+                                
+                            }
+                        }
+                        
+                
+                            
+
+                    ?>
+
             </article>
             <?php
                 } else {
