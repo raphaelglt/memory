@@ -48,9 +48,8 @@ echo $_SESSION['user_id'];
                 </div>
             </div>
         </div>
-
         
-        <input class="button1" href="#" type="submit" name="submitdeco" value="Se déconnecter">
+        <button class="button1"><a href="deconnect.php">Se déconnecter</a></button>
         
             
         <div>
@@ -58,7 +57,6 @@ echo $_SESSION['user_id'];
             <?php
                 include('./includes/database.inc.php');
             
-                var_dump($_POST);
                 if(isset($_POST['submitmail'])){
                     
                     $req1 = $dbh->prepare('SELECT user_email FROM Utilisateurs WHERE user_id=?');
