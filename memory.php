@@ -67,11 +67,11 @@ $stmt = $dbh->query($sql);
                     </div>
                     <p id="chat-title">Chat général</p>
                 </div>
-                <div id="chat-body">
-                    <?php if(isset($stmt) && $stmt->rowCount()>0) {
+                <div id="chat-body" >
+                    <?php if(isset($messages) && $messages->rowCount()>0) {
                             list($day, $month, $year, $hour, $min, $sec) = explode("/", date('d/m/Y/h/i/s'));
-                            foreach ($stmt as $row) {
-                                if ($row['message_user_id'] == 1) {
+                            foreach ($messages as $row) {
+                                if ($row['message_user_id'] == $_SESSION['user_id']) {
                                     ?><div class="my-message">
                                         <div class="message">
                                             <p class="message-detail">Moi</p>
@@ -99,10 +99,47 @@ $stmt = $dbh->query($sql);
                         }
                     ?>
                 </div>
-                <form id="input-container">
-                    <textarea type="text" id="input" placeholder="Votre message..." ></textarea>
-                    <input type="submit" id="submit" />
+                <form id="input-container" method="post" action="">
+                    <textarea type="text" id="message_id" name="message" placeholder="Votre message..." ></textarea>
+                    <input type="submit" name="envoyer" id="envoyer" />
                 </form>
+                    <?php
+                     // precaution de securité 
+                     $user_message_date = date('Y-m-d H:i:s');
+                     $error=false;
+                     
+                        if(!empty($_POST)){
+                            extract($_POST);
+                            if (isset($_POST['envoyer'])){
+                                $message_id = htmlentities(trim($message));
+                               
+                                if (preg_match("`^([a-zA-Z0-9-_]{1,200})$`", $message)){
+                                    $error=true;
+                                    $error = "message trop lent";
+
+                                }elseif(!$error){
+                                    $sql = "SELECT game_id FROM Jeux WHERE game_name = 'The Power Of Memory'";
+                                    $gameid = $dbh->query($sql);
+                                    $game_id = $gameid->fetch();
+                                    $message = $_POST['message'];
+                                    $sql = "INSERT INTO Messages (message_id, message_game_id, message_user_id, message_value, message_datetime)
+                                    VALUES (NULL, :message_game_id , :message_user_id, :message_value, :message_datetime)";
+                                    $send_message = $dbh->prepare($sql);
+                                    $send_message->bindParam(':message_game_id',$game_id['game_id']);
+                                    $send_message->bindParam(':message_user_id',$_SESSION['user_id']);
+                                    $send_message->bindParam(':message_value',$message);
+                                    $send_message->bindParam(':message_datetime',$user_message_date);
+                                    $send_message->execute();
+                                }
+                                
+                            }
+                        }
+                        
+                
+                            
+
+                    ?>
+
             </article>
             <?php
                 } else {
