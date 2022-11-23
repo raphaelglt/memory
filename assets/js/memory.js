@@ -3,12 +3,24 @@ let selectDifficulty = document.querySelector('#select-difficulty');
 let selectTheme = document.querySelector('#select-theme');
 let table = document.querySelector('#table');
 let error = document.querySelector('#error-message');
+let pageContainer = document.querySelector('#page-container');
+let popUp = document.querySelector('#pop-up');
+let result = document.querySelector('#result');
+
+pageContainer.addEventListener('click', () => {
+    popUp.style.display = 'none';
+    pageContainer.style.opacity = "1";
+})
 
 let timer = document.querySelector('#timer');
 let startTime = 0;
 let elapsedTime = 0;
 let currentTime = 0;
 let paused = true;
+
+let m;
+let s;
+let ms;
 
 const images = [];
 const pairs = []
@@ -167,13 +179,19 @@ function startTimer() {
         startTime = Date.now() - elapsedTime;
         intervalId = setInterval(updateTime, 100);
     }
-}    
+}
+
+function endGameAnimation() {
+    popUp.style.display = 'block';
+    pageContainer.style.opacity = "0.33";
+}
 
 function updateTime(){
     //chronometre
     if (pairs.length === images.length) {
         paused = true;
         clearInterval(intervalId);
+        result.innerText = `Vous avez fini le memory en ${m} min ${s} secs et ${ms} ms`;
         const jsConfetti = new JSConfetti()
 
         function confettiFY() {
@@ -184,6 +202,7 @@ function updateTime(){
                 confettiRadius: 6,
                 confettiNumber: 500,
             })
+            setTimeout(endGameAnimation, 2000);
         }
         confettiFY()
     }
@@ -197,9 +216,9 @@ function updateTime(){
                 minutes++;
             }
         }
-        let m = minutes < 10 ? "0" + minutes : minutes;
-        let s = seconds < 10 ? "0" + seconds : seconds;
-        let ms = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+        m = minutes < 10 ? "0" + minutes : minutes;
+        s = seconds < 10 ? "0" + seconds : seconds;
+        ms = milliseconds < 10 ? "0" + milliseconds : milliseconds;
 
         timer.textContent = `${m}:${s}:${ms}`;
     }    

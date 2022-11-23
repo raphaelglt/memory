@@ -112,6 +112,16 @@ $stmt = $dbh->query($sql);
                 include('./view/footer.inc.php');
             ?>
         </div>
+        <div id='pop-up'>
+            <div id='pop-up-content'>
+                <h2>Félicitations !!</h2>
+                <h3 id="result"></h3>
+                <div id="pop-up-buttons">
+                    <button id="toward-index"><a href="./index.php">Retour à l'accueil</a></button>
+                    <button id="toward-memory"><a href="./memory.php">Rejouer une partie</a></button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 <script src="./assets/js/memory.js"></script>

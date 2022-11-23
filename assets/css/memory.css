@@ -1,3 +1,6 @@
+#page-container {
+    opacity: 1;
+}
 #table-container {
     margin: 40px 0;
     padding: 0;
@@ -216,4 +219,53 @@ button {
     width: 100%;
     height: 100%;
     border-radius: 5px;
+}
+#pop-up {
+    display: none;
+    position: fixed;
+    width: 400px;
+    height: 600px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+#pop-up-content {
+    width: 100%;
+    height: 100%;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#pop-up-content h3 {
+    color: black;
+    text-align: center;
+}
+#pop-up-content h2 {
+    font-family: 'Poppins', sans-serif;
+}
+#pop-up-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+#pop-up-buttons button {
+    padding: 9px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+#pop-up-buttons a {
+    color: white;
+}
+#toward-index {
+    background-color: rgb(240, 46, 46);
+}
+#toward-memory {
+    background-color: rgb(38, 134, 229);
 }
