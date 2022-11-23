@@ -18,6 +18,7 @@ $stmt = $dbh->query($sql);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/css/maPage.css">
         <link rel="stylesheet" href="assets/css/memory.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     </head>
     <body>
         <div id="page-container">
@@ -110,7 +111,7 @@ $stmt = $dbh->query($sql);
                 }
                 include('./view/footer.inc.php');
             ?>
-        </div>    
+        </div>
     </body>
 </html>
 <script src="./assets/js/memory.js"></script>
