@@ -92,44 +92,7 @@ include('./init.php');
 
 
             </p>
-            <p>
-                <?php
-                if(isset($_POST['submit'])){
-                    
-                    if (empty($_POST["nom"])) {
-                        echo '<p style ="color:white"> Veuillez vérifier le formulaire - veuillez saisir votre nom.';
-
-                    }
-                    
-                    else if (!empty($_POST["email"])){
-                        $point = strpos($_POST['email'], ".");
-                        $arobase = strpos($_POST['email'], "@");
-                        if ($point === false)
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un point.</p>';
-                        else if ($arobase === false)
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
-                        else {
-                            if(empty($_POST["sujet"])){
-                                echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un sujet.</p>';
-                            } else {
-                                if(strlen($_POST['message']) < 15){
-                                    echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un message plus long.</p>';
-                                } else {
-                                    echo "Envoie du message";
-                                }
-                            }
-                        }
-                    } else {
-                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un email.</p>';
-                    }
-                }else{
-                    echo '<p style ="color:white">Veuillez vérifier le formulaire</p>';
-                }
-
-                ?>
-
-
-            </p>
+            
         </div>
     </section>
     <?php
