@@ -132,7 +132,8 @@ main {
 #input-container {
     display: flex;
     flex-direction: row;
-    margin: 0 1vw 3vw 1vw;
+    margin: 0 1vw 2vw 1vw;
+    align-items: baseline;
 }
 #input {
     padding: 10px;
