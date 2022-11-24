@@ -1,7 +1,7 @@
+
 <?php 
 include('./init.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +11,12 @@ include('./init.php');
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/contact.css">
+    <link rel="stylesheet" href="assets/css/maPage.css">
 </head>
 <body>
     <?php 
         $file_name = "CONTACT";
         include('./view/header.inc.php'); 
-        if (isset($_SESSION['user_id'])) {
     ?>
     <section>
         <div class="infos-container">
@@ -89,9 +89,6 @@ include('./init.php');
         </div>
     </section>
     <?php
-        } else {
-            include('./view/disconnected.inc.php');
-        }
         include('./view/footer.inc.php');
     ?>
 </body>
