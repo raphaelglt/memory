@@ -1,3 +1,4 @@
+//prend tous les élémenyts du dom nécessaire
 let selectContainer = document.querySelector('#select-container');
 let selectDifficulty = document.querySelector('#select-difficulty');
 let selectTheme = document.querySelector('#select-theme');
@@ -7,21 +8,27 @@ let pageContainer = document.querySelector('#page-container');
 let popUp = document.querySelector('#pop-up');
 let result = document.querySelector('#result');
 
+//pour enlever la pop-up quand elle sera activée
 pageContainer.addEventListener('click', () => {
     popUp.style.display = 'none';
     pageContainer.style.opacity = "1";
 })
 
+//options du timer
 let timer = document.querySelector('#timer');
 let startTime = 0;
 let elapsedTime = 0;
 let currentTime = 0;
 let paused = true;
 
+//minutes secondes et millisecondes
 let m;
 let s;
 let ms;
 
+[milliseconds,seconds,minutes,hours] = [0,0,0,0];
+
+//données pour le tableau
 const images = [];
 const pairs = []
 const state = {
@@ -31,51 +38,47 @@ const state = {
     lastCard: {},
 };
 
-[milliseconds,seconds,minutes,hours] = [0,0,0,0];
-
+//handle le click pour start le jeu
 function onButton() {
     //prend la valeur de la difficulté (nombre de case) et le theme
     let difficultyValue = selectDifficulty.value;
     let themeValue = selectTheme.value;
     if (difficultyValue != "" && themeValue != "") {
         //requête ajax pour chercher les images
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                let jsonResponse = JSON.parse(this.responseText);
-                for (let elt of jsonResponse) {
-                    images.push({
-                        'url': elt['image_url'],
-                        'alreadyUsed': false,
-                    });
+        fetch("includes/get_theme_images.php?theme="+themeValue+"&size="+difficultyValue)
+            .then((response) => {
+                if (response.status == 200) return response.json();
+            })
+            .then((json) => {
+                console.log(json);
+                if (json['images']) {
+                    for (let elt of json['images']) {
+                        images.push({
+                            'url': elt['image_url'],
+                            'alreadyUsed': false,
+                        });
+                    }
+                    startGame();
+                } else {
+                    console.log(json['error'])
                 }
-                startGame();
-            } else {
-                console.log('Error')
-                console.log("req : includes/get_theme_images.php?theme="+themeValue+"&size="+difficultyValue);
-            }
-        };
-        xmlhttp.open("GET","includes/get_theme_images.php?theme="+themeValue+"&size="+difficultyValue,true);
-        xmlhttp.responseType = "text";
-        xmlhttp.send();
-        
-        generateTable(difficultyValue, themeValue)
+            })
+                
+        //génère la table puis commence le timer
+        generateTable(difficultyValue)
         startTimer()
     } else {
         error.innerText = 'Veuillez renseigner les deux champs';
     }    
 }
 
+
 function startGame() {
     state.cards = shuffleCards(images);
     const cards = document.querySelectorAll(".cell");
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener("click", () => handleCardClick(i, cards[i]));
-    }
-    const backs = document.querySelectorAll(".back-img");
-    for (let i = 0; i < backs.length; i++) {
-        console.log();
-        backs[i].src = state.cards[i];
+        cards[i].lastChild.lastChild.src = state.cards[i];
     }
 }
 
@@ -85,11 +88,9 @@ function shuffleCards(array) {
     let i = (copy.length)*2;
     while (i > 0) {
         const cardIndex = Math.floor(Math.random() * copy.length); // 0 et la longueur du tableau (non-comprise)
-        console.log('index :',cardIndex)
         const card = copy[cardIndex]['url'];
         result.push(card);
         if (copy[cardIndex]['alreadyUsed']) {
-            console.log('delete')
             copy.splice(cardIndex, 1)[0];
         } else {
             copy[cardIndex]['alreadyUsed'] = true;
@@ -135,7 +136,6 @@ function isUnflippable(elt) {
  */
 function isPair(prevElt, elt) {
     if (prevElt.elt.lastChild.lastChild.src === elt.lastChild.lastChild.src) {
-        console.log('pair')
         prevElt.elt.setAttribute('unflippable', "");
         elt.setAttribute('unflippable', "");
         pairs.push(elt.lastChild.lastChild.src);
@@ -143,8 +143,13 @@ function isPair(prevElt, elt) {
     }
 }
 
+/**
+ * 
+ * @param {Text} difficultyValue 
+ * créer la table a partir de la difficulté
+ */
 
-function generateTable(difficultyValue, themeValue) {
+function generateTable(difficultyValue) {
     //créé les cases
     for (let x = 0; x<difficultyValue; x++) {
         let rowDiv = document.createElement('div');
@@ -188,7 +193,7 @@ function endGameAnimation() {
 
 function updateTime(){
     //chronometre
-    if (pairs.length === images.length) {
+    if ((pairs.length === images.length) && pairs.length>0) {
         paused = true;
         clearInterval(intervalId);
         result.innerText = `Vous avez fini le memory en ${m} min ${s} secs et ${ms} ms`;
@@ -205,6 +210,43 @@ function updateTime(){
             setTimeout(endGameAnimation, 2000);
         }
         confettiFY()
+        let level;
+        switch(selectDifficulty.value) {
+            case "2":
+                level = "easy";
+                break;
+            case "4":
+                level = "medium";
+                break;
+            case "10":
+                level = "hard";
+                break;
+            case "20":
+                level = "impossible";
+                break;
+            default:
+                level = "unknown";
+                break
+        }
+        const data = {
+            level,
+            value: 23,
+            stopwatch: `${m}:${s}:${ms}`
+        }
+        console.log(data)
+        fetch('includes/send_score.php', {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            method: 'POST',
+            body: new URLSearchParams(data)
+        })
+        .then((response) => {
+            return response.text()
+        })
+        .then((text) => {
+            console.log(text)
+        })
     }
     if (!paused) {
         milliseconds+=10;
