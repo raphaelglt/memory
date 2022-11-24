@@ -149,6 +149,58 @@ input{
     flex-direction: column;
 }
 
+/*TOOLTIP*/
+.tooltip{
+    position: relative;
+    background: rgba(0,0,0,0.3);
+    padding: 5px 12px;
+    border-radius: 100%;
+    font-size: 20px;
+    cursor: help;
+}
 
+.tooltip::before, .tooltip::after{
+    position: absolute;
+    left: 50%;
+    opacity: 0;
+    transition: all ease 0.3s;
+}
 
+.tooltip::before{
+    content: "";
+    border-width: 10px 8px 0 8px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.3) transparent transparent transparent;
+    top: -20px;
+    margin-left: -8px;
+}
 
+.tooltip::after{
+    content: attr(data-tooltip);
+    background: rgba(0,0,0,0.3);
+    top: -20px;
+    transform: translateY(-100%);
+    font-size: 14px;
+    margin-left: -150px;
+    width: 250px;
+    border-radius: 10px;
+    color: #eee;
+    padding: 14px;
+}
+
+/* Hover states */
+
+.tooltip:hover::before, .tooltip:hover::after{
+    opacity: 1;
+}
+
+/*PROGRESS BAR*/
+#strength-bar{
+    background-color: #dcdcdc;
+    width: 72%;
+    height: 10px;
+    position: relative;
+    margin-top: 15px;
+    margin-left: 21px;
+    border-radius: 10px;
+  }
