@@ -4,9 +4,6 @@ include('./init.php');
 
 $stmt = $dbh->query('SELECT DISTINCT image_theme FROM Images');
 $themes = $stmt->fetchAll();
-
-$sql = file_get_contents('./sql/select_chat.sql');
-$stmt = $dbh->query($sql); 
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,71 +65,28 @@ $stmt = $dbh->query($sql);
                     </div>
                     <p id="chat-title">Chat général</p>
                 </div>
-                <div id="chat-body" >
-                    <?php if(isset($messages) && $messages->rowCount()>0) {
-                            list($day, $month, $year, $hour, $min, $sec) = explode("/", date('d/m/Y/h/i/s'));
-                            foreach ($messages as $row) {
-                                if ($row['message_user_id'] == $_SESSION['user_id']) {
-                                    ?><div class="my-message">
-                                        <div class="message">
-                                            <p class="message-detail">Moi</p>
-                                            <p class="message-content my-text"><?= $row['message_value'] ?></p>
-                                            <p class="message-detail"><?= "Le $day-$month-$year à  $hour:$min:$sec" ?></p>
-                                        </div>
-                                    </div><?php
-                                } else {
-                                    ?><div class="bot-message">
-                                        <img src="assets/images/elgato.jpeg" alt="Bot profil picture" id="bot-img-body" />
-                                        <div class="message">
-                                            <p class="message-detail"><?= $row['user_pseudo'] ?></p>
-                                            <p class="message-content bot-text"><?= $row['message_value'] ?></p>
-                                            <p class="message-detail"><?= "Le $day-$month-$year à  $hour:$min:$sec" ?></p>
-                                        </div>
-                                    </div><?php
-                                }
-                            }
-                        ?>
-                    <?php 
-                        } else {
-                            ?><div id="no-message-container">
-                                <p id="no-message-text">Aucun messages ces dernières 24 heures</p>
-                            </div><?php
-                        }
-                    ?>
-                </div>
-                <form id="input-container" method="post" action="">
-                    <textarea type="text" id="message_id" name="message" placeholder="Votre message..." ></textarea>
-                    <input type="submit" name="envoyer" id="envoyer" />
+                <div id="chat-body"></div>
+                <div id="input-container">
+                    <textarea type="text" id="input" placeholder="Votre message..." ></textarea>
+                    <button id="submit" onClick="sendMessage()">Envoyer</button>
                 </form>
-                    <?php
-                     // precaution de securité 
-                     $user_message_date = date('Y-m-d H:i:s');
-                     $error=false;
-                     
-                        if(!empty($_POST)){
-                            extract($_POST);
-                            if (isset($_POST['envoyer'])){
-                                $message_id = htmlentities(trim($message));
-                               
-                                if (preg_match("`^([a-zA-Z0-9-_]{1,200})$`", $message)){
-                                    $error=true;
-                                    $error = "message trop lent";
+            </article>
+                
+                <?php
 
-                                }elseif(!$error){
-                                    $sql = "SELECT game_id FROM Jeux WHERE game_name = 'The Power Of Memory'";
-                                    $gameid = $dbh->query($sql);
-                                    $game_id = $gameid->fetch();
-                                    $message = $_POST['message'];
-                                    $sql = "INSERT INTO Messages (message_id, message_game_id, message_user_id, message_value, message_datetime)
-                                    VALUES (NULL, :message_game_id , :message_user_id, :message_value, :message_datetime)";
-                                    $send_message = $dbh->prepare($sql);
-                                    $send_message->bindParam(':message_game_id',$game_id['game_id']);
-                                    $send_message->bindParam(':message_user_id',$_SESSION['user_id']);
-                                    $send_message->bindParam(':message_value',$message);
-                                    $send_message->bindParam(':message_datetime',$user_message_date);
-                                    $send_message->execute();
-                                }
+                // precaution de securité 
+                $user_message_date = date('Y-m-d H:i:s');
+                $error=false;
+                    // l'envoie d'un message au chat 
+                    if(!empty($_POST)){
+                        echo $_POST['submit'];
+                        if (isset($_POST['submit'])){
+                            $input = htmlentities(trim($_POST['message']));
+                            // si le message ne fait plus de 200 caractère 
+                            if (!preg_match("`^([a-zA-Z0-9-_]{1,200})$`", $input)){
+                                $error = "message trop lent";
                                 
+
                             }
                         }
                         

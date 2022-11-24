@@ -266,11 +266,130 @@ function updateTime(){
 }
 
 //Mounir
+let chatBody = document.querySelector('#chat-body');
+loadMessage();
+setInterval(loadMessage, 5000)
 
-var xml = new XMLHttpRequest();
-xml.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200){
+function loadMessage() {
+    fetch('../../includes/loadMessage.php')
+        .then((response) => {
+            if (response.status) return response.json();
+        })
+        .then((json) => {
+                if (json['messages'] && json['messages'].length>0) {
+                    json['messages'].forEach(message =>  addelement(message, json['user_id']))
+                } else {
+                    showNoMessage();
+                }    
+                chatBody.scrollTop = chatBody.scrollHeight
+            }
 
+        );
+        function showNoMessage() {
+            const messageContainer = document.createElement('div');
+            messageContainer.classList.add('no-message-container')
+
+            const messageContent = document.createElement('p');
+            messageContent.classList.add('no-message-text')
+            messageContent.innerText = "Aucun messages ces dernières 24 heures";
+
+            messageContainer.appendChild(messageContent)
+            chatBody.appendChild(messageContainer)
+
+        }    
+    function addelement(message, user_id){
+        if (user_id == message['message_user_id']) {
+            const Divmessage = document.createElement("div");
+            Divmessage.classList.add("my-message")
+
+            const messageContent = document.createElement("div");
+            messageContent.classList.add("message")
+
+            //<img src="assets/images/elgato.jpeg" alt="Bot profil picture" id="bot-img-body" />
+
+
+            const messageDetail = document.createElement(`p`);
+            messageDetail.classList.add("message-detail");
+
+            const messageValue = document.createElement("p");
+            messageValue.classList.add("message-content")
+            messageValue.classList.add("my-text")
+
+            const messagedate = document.createElement("p");
+            messagedate.classList.add("message-detail")
+
+            messageDetail.textContent = "Moi";
+            messageValue.textContent = message['message_value'];
+            messagedate.textContent = message['message_datetime'];
+
+
+            Divmessage.appendChild(messageContent)
+            messageContent.appendChild(messageDetail);
+            messageContent.appendChild(messageValue);
+            messageContent.appendChild(messagedate);
+            chatBody.appendChild(Divmessage)
+        } else {
+            const Divmessage = document.createElement("div");
+            Divmessage.classList.add("bot-message")
+
+            const messageImage = document.createElement("img");
+            messageImage.setAttribute('src', "assets/images/elgato.jpeg")
+            messageImage.setAttribute('alt', "Bot profil picture")
+            messageImage.setAttribute('id', "bot-img-body")
+
+            const messageContent = document.createElement("div");
+            messageContent.classList.add("message")
+
+            const messageDetail = document.createElement(`p`);
+            messageDetail.classList.add("message-detail");
+
+            const messageValue = document.createElement("p");
+            messageValue.classList.add("message-content")
+            messageValue.classList.add("bot-text")
+
+            const messagedate = document.createElement("p");
+            messagedate.classList.add("message-detail")
+
+            messageDetail.textContent = message['user_pseudo'];
+            messageValue.textContent = message['message_value'];
+            messagedate.textContent = message['message_datetime'];
+
+            messageContent.appendChild(messageDetail);
+            messageContent.appendChild(messageValue);
+            messageContent.appendChild(messagedate);
+            Divmessage.appendChild(messageImage);
+            Divmessage.appendChild(messageContent);
+            chatBody.appendChild(Divmessage)
+        }
+        
+    }
 }
-}
 
+
+document.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        sendMessage();
+    }
+});
+
+let input = document.querySelector('#input')
+
+function sendMessage() {
+    if (input.value.length > 3) {
+        const data = {
+            input: input.value
+        }
+        fetch('includes/send_message.php', {
+            method: "POST",
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
+            body: new URLSearchParams(data)
+        })
+        .then((response) => {
+            return response.text()
+        })
+        .then((text) => {
+            loadMessage()
+            input.value = "";
+        })
+    }    
+}
