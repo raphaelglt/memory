@@ -10,6 +10,7 @@ echo $_SESSION['user_id'];
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="assets/css/myaccount.css">
         <link rel="stylesheet" href="assets/css/maPage.css">
+       
         <title> MON ESPACE</title> 
     </head>
     <body>
@@ -39,15 +40,22 @@ echo $_SESSION['user_id'];
                     <h1>Modifier le mot de passe</h1>
                     <div class="input1">
                         <form method="post">
-                            <input id="mot de passe" type="password" name="oldpassw1" placeholder="Ancien mot de passe" >
-                            <input id="mot de passe" type="password" name="newpassw1" placeholder="Nouveau mot de passe" >
+                            <input id="oldpassw1" type="password" name="oldpassw1" placeholder="Ancien mot de passe" >
+                            <input id="newpassw1" type="password" name="newpassw1" placeholder="Nouveau mot de passe" oninput='strengthChecker()' >
+                            <span class="tooltip" data-tooltip="Pour un mot de passe sécurisé : au moins 8 caractères, un caractère spécial, un chiffre et une majuscule.">?</span>
+                            <div id="strength-bar"></div>
                             <input id="mot de passe" type="password" name="newpassw2" placeholder="Confirmez mot de passe">
                             <input class="button1" href="#" type="submit" name="submitpassw" value="Modifier">
                         </form>
                     </div>
+
+        
+
                 </div>
             </div>
         </div>
+
+        
         
         <div class="align-button">
             <button class="button2"><a href="deconnect.php">Se déconnecter</a></button>
@@ -144,40 +152,6 @@ echo $_SESSION['user_id'];
                     }
                 }
 
-                /*
-                if(isset($_POST["submitpassw"])){
-                    if(empty($_POST['oldpassw'])){ 
-                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez entrer votre mot de passe.</p>';
-                    }elseif(!empty($_POST['newpassw1'])){
-                        if(!preg_match("`^([a-zA-Z0-9-_]{8,})$`", $_POST['newpassw1'])){
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - nouveau mot de passe non conforme.</p>';
-                        }elseif($_POST['newpassw1'] != $_POST['newpassw2']){
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre confirmation de mot passe est incorrect.</p>';
-                        }else{
-                            $crypt_password = password_hash($_POST['newpassw2'], PASSWORD_ARGON2ID);
-                            $sql="UPDATE Utilisateurs SET user_password = :user_password WHERE user_id = :user_id";
-                            $stmt = $dbh->prepare($sql);
-                            $stmt->bindParam (':user_password',$crypt_password);
-                            $stmt->bindParam (':user_id',$_SESSION['user_id']);
-                            $stmt->execute();
-                            echo '<p style ="color:white"> Nouveau mot de passe créé avec succès.</p>';
-                        }
-                    
-                    }else{ 
-
-                        $req2 = $dbh->prepare('SELECT user_password FROM Utilisateurs WHERE user_id =?');
-                        $req2->bindParam(1, $_SESSION['user_id']);
-                        $req2->execute();  
-                        $passw1 = $req2->fetch();
-
-                        if(password_verify($_POST['oldpassw'], $passw1[0])){
-                            echo '<p style ="color:white">Ancien mot de passe correct.</p>';
-                        }  
-                        else {  
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre mot de passe est incorrect.</p>';
-                        }  
-                    }  
-                }*/
             ?>
             </p>
         </div>
@@ -185,5 +159,6 @@ echo $_SESSION['user_id'];
         <?php
             include('./view/footer.inc.php');
         ?>
+        <script src="./assets/js/myaccount.js"></script>
     </body>
 </html>
