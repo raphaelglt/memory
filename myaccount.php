@@ -42,8 +42,15 @@ echo $_SESSION['user_id'];
                         <form method="post">
                             <input id="oldpassw1" type="password" name="oldpassw1" placeholder="Ancien mot de passe" >
                             <input id="newpassw1" type="password" name="newpassw1" placeholder="Nouveau mot de passe" oninput='strengthChecker()' >
-                            <span class="tooltip" data-tooltip="Pour un mot de passe sécurisé : au moins 8 caractères, un caractère spécial, un chiffre et une majuscule.">?</span>
-                            <div id="strength-bar"></div>
+                            <!--<span class="tooltip" data-tooltip="Pour un mot de passe sécurisé : au moins 8 caractères, un caractère spécial, un chiffre et une majuscule.">?</span>-->
+                            <div id="strength-bar" >
+                                <p id="weak"></p>
+                                <p id="weak"></p>
+                                <p id="medium"></p>
+                                <p id="medium"></p>
+                                <p id="strong"></p>
+                            </div>
+                            <p id="level"></p>
                             <input id="mot de passe" type="password" name="newpassw2" placeholder="Confirmez mot de passe">
                             <input class="button1" href="#" type="submit" name="submitpassw" value="Modifier">
                         </form>
