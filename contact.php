@@ -1,6 +1,4 @@
-<?php 
-include('./init.php');
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +8,6 @@ include('./init.php');
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/contact.css">
-    <link rel="stylesheet" href="assets/css/maPage.css">
 </head>
 <body>
     <?php 
@@ -42,28 +39,6 @@ include('./init.php');
 
         <div class="form-container">
             <form method ="post">
-                <input type="text" name="nom" placeholder="Nom" id="form" />
-                <input type="text" name="email" placeholder="Email" id="form" /></br>
-                <input type="text" name="sujet" placeholder="Sujet" id="form" /></br>
-                <textarea name="message" placeholder="Message" id="form"></textarea></br>
-                <input type='submit' id="buttonsend" name="submit" />
-            <form method ="post">
-                <input type="text" name="nom" placeholder="Nom" id="form">
-                <input type="text" name="email" placeholder="Email" id="form"></br>
-                <input type="text" name="sujet" placeholder="Sujet" id="form"></br>
-                <textarea name="comm" placeholder="Message" id="form"></textarea></br>
-                <button id="buttonsend"><a href="">Envoyer</a></button>
-                <input type="text" name="nom" placeholder="Nom" id="form" />
-                <input type="text" name="email" placeholder="Email" id="form" /></br>
-                <input type="text" name="sujet" placeholder="Sujet" id="form" /></br>
-                <textarea name="message" placeholder="Message" id="form"></textarea></br>
-                <input type='submit' id="buttonsend" name="submit" />
-            <form method ="post">
-                <input type="text" name="nom" placeholder="Nom" id="form">
-                <input type="text" name="email" placeholder="Email" id="form"></br>
-                <input type="text" name="sujet" placeholder="Sujet" id="form"></br>
-                <textarea name="comm" placeholder="Message" id="form"></textarea></br>
-                <button id="buttonsend"><a href="">Envoyer</a></button>
                 <input type="text" name="nom" placeholder="Nom" id="form" />
                 <input type="text" name="email" placeholder="Email" id="form" /></br>
                 <input type="text" name="sujet" placeholder="Sujet" id="form" /></br>
@@ -108,7 +83,6 @@ include('./init.php');
 
 
             </p>
-            
         </div>
     </section>
     <?php
