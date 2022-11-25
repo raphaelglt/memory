@@ -265,18 +265,19 @@ function updateTime(){
     }    
 }
 
-//Mounir
 let chatBody = document.querySelector('#chat-body');
 loadMessage();
 setInterval(loadMessage, 5000)
 
 function loadMessage() {
-    fetch('../../includes/loadMessage.php')
+    fetch('includes/loadMessage.php')
         .then((response) => {
             if (response.status) return response.json();
         })
         .then((json) => {
+            console.log(json)
                 if (json['messages'] && json['messages'].length>0) {
+                    chatBody.innerHTML = "";
                     json['messages'].forEach(message =>  addelement(message, json['user_id']))
                 } else {
                     showNoMessage();
@@ -284,85 +285,87 @@ function loadMessage() {
                 chatBody.scrollTop = chatBody.scrollHeight
             }
 
-        );
-        function showNoMessage() {
-            const messageContainer = document.createElement('div');
-            messageContainer.classList.add('no-message-container')
+        );    
+}
 
-            const messageContent = document.createElement('p');
-            messageContent.classList.add('no-message-text')
-            messageContent.innerText = "Aucun messages ces dernières 24 heures";
+function showNoMessage() {
+    const messageContainer = document.createElement('div');
+    messageContainer.classList.add('no-message-container')
 
-            messageContainer.appendChild(messageContent)
-            chatBody.appendChild(messageContainer)
+    const messageContent = document.createElement('p');
+    messageContent.classList.add('no-message-text')
+    messageContent.innerText = "Aucun messages ces dernières 24 heures";
 
-        }    
-    function addelement(message, user_id){
-        if (user_id == message['message_user_id']) {
-            const Divmessage = document.createElement("div");
-            Divmessage.classList.add("my-message")
+    messageContainer.appendChild(messageContent)
+    chatBody.appendChild(messageContainer)
 
-            const messageContent = document.createElement("div");
-            messageContent.classList.add("message")
+}   
 
-            //<img src="assets/images/elgato.jpeg" alt="Bot profil picture" id="bot-img-body" />
+function addelement(message, user_id){
+    if (user_id == message['message_user_id']) {
+        const Divmessage = document.createElement("div");
+        Divmessage.classList.add("my-message")
 
+        const messageContent = document.createElement("div");
+        messageContent.classList.add("message")
 
-            const messageDetail = document.createElement(`p`);
-            messageDetail.classList.add("message-detail");
-
-            const messageValue = document.createElement("p");
-            messageValue.classList.add("message-content")
-            messageValue.classList.add("my-text")
-
-            const messagedate = document.createElement("p");
-            messagedate.classList.add("message-detail")
-
-            messageDetail.textContent = "Moi";
-            messageValue.textContent = message['message_value'];
-            messagedate.textContent = message['message_datetime'];
+        //<img src="assets/images/elgato.jpeg" alt="Bot profil picture" id="bot-img-body" />
 
 
-            Divmessage.appendChild(messageContent)
-            messageContent.appendChild(messageDetail);
-            messageContent.appendChild(messageValue);
-            messageContent.appendChild(messagedate);
-            chatBody.appendChild(Divmessage)
-        } else {
-            const Divmessage = document.createElement("div");
-            Divmessage.classList.add("bot-message")
+        const messageDetail = document.createElement(`p`);
+        messageDetail.classList.add("message-detail");
 
-            const messageImage = document.createElement("img");
-            messageImage.setAttribute('src', "assets/images/elgato.jpeg")
-            messageImage.setAttribute('alt', "Bot profil picture")
-            messageImage.setAttribute('id', "bot-img-body")
+        const messageValue = document.createElement("p");
+        messageValue.classList.add("message-content")
+        messageValue.classList.add("my-text")
 
-            const messageContent = document.createElement("div");
-            messageContent.classList.add("message")
+        const messagedate = document.createElement("p");
+        messagedate.classList.add("message-detail")
 
-            const messageDetail = document.createElement(`p`);
-            messageDetail.classList.add("message-detail");
+        messageDetail.textContent = "Moi";
+        messageValue.textContent = message['message_value'];
+        messagedate.textContent = message['message_datetime'];
 
-            const messageValue = document.createElement("p");
-            messageValue.classList.add("message-content")
-            messageValue.classList.add("bot-text")
 
-            const messagedate = document.createElement("p");
-            messagedate.classList.add("message-detail")
+        Divmessage.appendChild(messageContent)
+        messageContent.appendChild(messageDetail);
+        messageContent.appendChild(messageValue);
+        messageContent.appendChild(messagedate);
+        chatBody.appendChild(Divmessage)
+    } else {
+        const Divmessage = document.createElement("div");
+        Divmessage.classList.add("bot-message")
 
-            messageDetail.textContent = message['user_pseudo'];
-            messageValue.textContent = message['message_value'];
-            messagedate.textContent = message['message_datetime'];
+        const messageImage = document.createElement("img");
+        messageImage.setAttribute('src', "assets/images/elgato.jpeg")
+        messageImage.setAttribute('alt', "Bot profil picture")
+        messageImage.setAttribute('id', "bot-img-body")
 
-            messageContent.appendChild(messageDetail);
-            messageContent.appendChild(messageValue);
-            messageContent.appendChild(messagedate);
-            Divmessage.appendChild(messageImage);
-            Divmessage.appendChild(messageContent);
-            chatBody.appendChild(Divmessage)
-        }
-        
+        const messageContent = document.createElement("div");
+        messageContent.classList.add("message")
+
+        const messageDetail = document.createElement(`p`);
+        messageDetail.classList.add("message-detail");
+
+        const messageValue = document.createElement("p");
+        messageValue.classList.add("message-content")
+        messageValue.classList.add("bot-text")
+
+        const messagedate = document.createElement("p");
+        messagedate.classList.add("message-detail")
+
+        messageDetail.textContent = message['user_pseudo'];
+        messageValue.textContent = message['message_value'];
+        messagedate.textContent = message['message_datetime'];
+
+        messageContent.appendChild(messageDetail);
+        messageContent.appendChild(messageValue);
+        messageContent.appendChild(messagedate);
+        Divmessage.appendChild(messageImage);
+        Divmessage.appendChild(messageContent);
+        chatBody.appendChild(Divmessage)
     }
+    
 }
 
 

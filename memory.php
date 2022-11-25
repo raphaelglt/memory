@@ -71,36 +71,12 @@ $themes = $stmt->fetchAll();
                     <button id="submit" onClick="sendMessage()">Envoyer</button>
                 </form>
             </article>
-                
-                <?php
-
-                // precaution de securité 
-                $user_message_date = date('Y-m-d H:i:s');
-                $error=false;
-                    // l'envoie d'un message au chat 
-                    if(!empty($_POST)){
-                        echo $_POST['submit'];
-                        if (isset($_POST['submit'])){
-                            $input = htmlentities(trim($_POST['message']));
-                            // si le message ne fait plus de 200 caractère 
-                            if (!preg_match("`^([a-zA-Z0-9-_]{1,200})$`", $input)){
-                                $error = "message trop lent";
-                                
-
-                            }
-                        }
-                        
-                
-                            
-
-                    ?>
-
             </article>
             <?php
                 } else {
                     include('./view/disconnected.inc.php');
                 }
-                include('./view/footer.inc.php');
+                include('./view/footer.inc.php'); 
             ?>
         </div>
         <div id='pop-up'>
