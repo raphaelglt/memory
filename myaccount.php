@@ -45,8 +45,6 @@ echo $_SESSION['user_id'];
                             <!--<span class="tooltip" data-tooltip="Pour un mot de passe sécurisé : au moins 8 caractères, un caractère spécial, un chiffre et une majuscule.">?</span>-->
                             <div id="strength-bar" >
                                 <p id="weak"></p>
-                                <p id="weak"></p>
-                                <p id="medium"></p>
                                 <p id="medium"></p>
                                 <p id="strong"></p>
                             </div>
@@ -166,6 +164,7 @@ echo $_SESSION['user_id'];
         <?php
             include('./view/footer.inc.php');
         ?>
-        <script src="./assets/js/myaccount.js"></script>
+        
     </body>
 </html>
+<script src="./assets/js/myaccount.js"></script>
