@@ -1,6 +1,6 @@
 <?php 
 include('./init.php');
-echo $_SESSION['user_id'];
+include('./includes/database.inc.php');
 ?>
 
 <!DOCTYPE html>   
@@ -17,6 +17,7 @@ echo $_SESSION['user_id'];
         <?php 
             $file_name = "MON PROFIL";
             include('./view/header.inc.php'); 
+            if (isset($_SESSION['user_id'])) {
         ?>
         <main>
         <div id="main-container">
@@ -71,7 +72,6 @@ echo $_SESSION['user_id'];
         <div>
             <p>
             <?php
-                include('./includes/database.inc.php');
             
                 if(isset($_POST['submitmail'])){
                     
@@ -162,6 +162,9 @@ echo $_SESSION['user_id'];
         </div>
         </main>
         <?php
+            } else {
+                include('./view/disconnected.inc.php');
+            }
             include('./view/footer.inc.php');
         ?>
         
