@@ -1,3 +1,6 @@
+#page-container {
+    opacity: 1;
+}
 #table-container {
     margin: 40px 0;
     padding: 0;
@@ -7,24 +10,6 @@
     margin: 40px;
     overflow-x: scroll;
     display: none;
-}
-.row {
-    display: flex;
-    flex-direction: row;
-}
-.cell {
-    background-color: orange;
-    min-width: 100px;
-    height: 100px;
-    border-radius: 5px;
-    margin: 1.5px;
-    position: relative;
-}
-td {
-    background-color: orange;
-    width: 50px;
-    height: 60px;
-    border-radius: 5px;
 }
 main {
     margin: 0;
@@ -197,4 +182,90 @@ button {
     color: rgb(239, 35, 35);
     font-family: 'Poppins', sans-serif;
     margin-top: 20px;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.cell {
+    min-width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    margin: 1.5px;
+    transform-style: preserve-3d;
+    position: relative;
+    transition: transform 1s ease-in;
+}
+.front {
+    background-color: orange;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    position: absolute;
+    backface-visibility: hidden;
+}
+.back {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
+.flipCard {
+    transform: rotateY(180deg);
+}
+.back-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+#pop-up {
+    display: none;
+    position: fixed;
+    width: 400px;
+    height: 600px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+#pop-up-content {
+    width: 100%;
+    height: 100%;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#pop-up-content h3 {
+    color: black;
+    text-align: center;
+}
+#pop-up-content h2 {
+    font-family: 'Poppins', sans-serif;
+}
+#pop-up-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+#pop-up-buttons button {
+    padding: 9px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+#pop-up-buttons a {
+    color: white;
+}
+#toward-index {
+    background-color: rgb(240, 46, 46);
+}
+#toward-memory {
+    background-color: rgb(38, 134, 229);
 }

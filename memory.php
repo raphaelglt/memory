@@ -18,6 +18,7 @@ $stmt = $dbh->query($sql);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/css/maPage.css">
         <link rel="stylesheet" href="assets/css/memory.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     </head>
     <body>
         <div id="page-container">
@@ -110,7 +111,17 @@ $stmt = $dbh->query($sql);
                 }
                 include('./view/footer.inc.php');
             ?>
-        </div>    
+        </div>
+        <div id='pop-up'>
+            <div id='pop-up-content'>
+                <h2>Félicitations !!</h2>
+                <h3 id="result"></h3>
+                <div id="pop-up-buttons">
+                    <button id="toward-index"><a href="./index.php">Retour à l'accueil</a></button>
+                    <button id="toward-memory"><a href="./memory.php">Rejouer une partie</a></button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 <script src="./assets/js/memory.js"></script>

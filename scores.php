@@ -52,7 +52,7 @@ $stmt = $dbh->query($sql);
                                             <td><?=$row['user_pseudo']?></td>
                                             <?php //set the first letter as an upper ?>
                                             <td><?=ucfirst($row['score_level'])?></td>
-                                            <td><?=$row['score_value']?></td>
+                                            <td><?=$row['score_stopwatch']?></td>
                                             <td><?=$row['score_datetime']?></td>
                                         </tr><?php
                                     }
