@@ -1,3 +1,4 @@
+
 <?php 
 include('./init.php');
 ?>
@@ -15,7 +16,8 @@ include('./init.php');
 <body>
     <?php 
         $file_name = "CONTACT";
-        include('./view/header.inc.php'); 
+        include('./view/header.inc.php');
+        if (isset($_SESSION['user_id'])) {
     ?>
     <section>
         <div class="infos-container">
@@ -88,6 +90,9 @@ include('./init.php');
         </div>
     </section>
     <?php
+        } else {
+            include('./view/disconnected.inc.php');
+        }
         include('./view/footer.inc.php');
     ?>
 </body>

@@ -134,6 +134,10 @@ textarea{
     color: white;
 }
 
+#message{
+    color: white;
+}
+
 /*FOOTER*/
 footer {
     position: relative;

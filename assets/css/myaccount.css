@@ -54,11 +54,34 @@ position: relative;
     font-size: 1.2em;
     border: none;
     text-align: center;
-    
     width: 150px;
     height: 40px;
-
 }
+
+.align-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button2{
+    margin: 30px;
+    background-color: orange;
+    color: black;
+    padding: 20px , 20px;
+    border-radius: 3px solid;
+    border-radius: 5px;
+    font-weight: 100;
+    font-size: 1.2em;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    width: 150px;
+    height: 40px; 
+}
+.button2 a{
+    color: black;
+}
+
 input{
 
     background-color: rgb(39, 37, 68);

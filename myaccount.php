@@ -1,5 +1,6 @@
 <?php 
 include('./init.php');
+echo $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>   
@@ -28,7 +29,7 @@ include('./init.php');
                         <form method="post">
                             <input type="text" id="email" name="oldemail" placeholder="Ancien mail" >
                             <input type="text" id="email" name="newemail" placeholder="Nouveu mail" >
-                            <input type="password" id="email" placeholder="Mot de passe" >
+                            <input type="password" id="email" name="oldpassw" placeholder="Mot de passe" >
                             <input class="button1" type="submit" name="submitmail" value="Modifier">
                         </form>
                     </div>                    
@@ -38,7 +39,7 @@ include('./init.php');
                     <h1>Modifier le mot de passe</h1>
                     <div class="input1">
                         <form method="post">
-                            <input id="mot de passe" type="password" name="oldpassw" placeholder="Ancien mot de passe" >
+                            <input id="mot de passe" type="password" name="oldpassw1" placeholder="Ancien mot de passe" >
                             <input id="mot de passe" type="password" name="newpassw1" placeholder="Nouveau mot de passe" >
                             <input id="mot de passe" type="password" name="newpassw2" placeholder="Confirmez mot de passe">
                             <input class="button1" href="#" type="submit" name="submitpassw" value="Modifier">
@@ -47,52 +48,140 @@ include('./init.php');
                 </div>
             </div>
         </div>
-
+        
+        <div class="align-button">
+            <button class="button2"><a href="deconnect.php">Se déconnecter</a></button>
+        </div>
+            
+        
+            
         <div>
             <p>
             <?php
-                include('./includes/database.inc.php'); 
-
-                var_dump($_POST);
+                include('./includes/database.inc.php');
+            
                 if(isset($_POST['submitmail'])){
+                    
+                    $req1 = $dbh->prepare('SELECT user_email FROM Utilisateurs WHERE user_id=?');
+                    $req1->bindParam(1, $_SESSION['user_id']);
+                    $req1->execute();
+                    $email1 = $req1->fetch();
 
-                    /*if($_SESSION("user_id")){
-                        if("Utilisateurs.user_id" != "Utilisateurs.user_email"){
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email est incorrect.</p>';
-                        }
-                    }
-                    else*/
-                    if (!empty($_POST["newemail"])){
-                        $point = strpos($_POST['newemail'], ".");
-                        $arobase = strpos($_POST['newemail'], "@");
-                        if ($point === false){
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un point.</p>';
-                        }else if ($arobase === false){
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre email doit comporter un arobase.</p>';
-                        
+                    if(!empty($_POST["oldemail"])){
+                        $email = $_POST['oldemail'];
+                        if($email == $email1[0]){
+                            if(empty($_POST['newemail'])){
+                                echo '<p style ="color:white"> Veuillez vérifier le formulaire - ancien mail correct, veuillez entrer votre nouveau mail.</p>';
+                            }
+                            else {
+                                $point = strpos($_POST['newemail'], ".");
+                                $arobase = strpos($_POST['newemail'], "@");
+                                if ($point === false){
+                                    echo '<p style ="color:white">Veuillez vérifier le formulaire - votre nouveau mail doit comporter un point.</p>';
+                                }elseif ($arobase === false){
+                                    echo '<p style ="color:white">Veuillez vérifier le formulaire - votre nouveau mail doit comporter un arobase.</p>';
+                                }else{
+                                    $req2 = $dbh->prepare('SELECT user_password FROM Utilisateurs WHERE user_id =?');
+                                    $req2->bindParam(1, $_SESSION['user_id']);
+                                    $req2->execute();  
+                                    $passw1 = $req2->fetch();
+
+                                    $password = $_POST['oldpassw'];
+                                    if(password_verify($password, $passw1[0])){
+
+                                        $sql="UPDATE Utilisateurs SET user_email = :user_email WHERE user_id = :user_id";
+                                        $stmt = $dbh->prepare($sql);
+                                        $stmt->bindParam (':user_email',$_POST['newemail']);
+                                        $stmt->bindParam (':user_id',$_SESSION['user_id']);
+                                        $stmt->execute();
+                                        echo '<p style ="color:white"> Nouveau mail créé avec succès.</p>';
+
+                                    }else{
+                                        echo '<p style ="color:white"> Veuillez vérifier le formulaire - votre mot de passse est incorrect.</p>';
+                                    }
+                                }
+                            }
                         }else{
-                            return true;
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - ancien mail incorrect.</p>';
                         }
-                    }
-                }
-                if(isset($_POST["submitpassw"])){
-                    if(!empty($_POST["newpassw1"])){
-                        $req = $bdd ->prepare('SELECT user_password FROM Utilisateurs WHERE user_password=?');  
-                        $req ->execute([$_POST['newpassw1']]);
-                        $user = $req->fetch();  
                     }else{
-                        echo '<p style ="color:white">Veuillez vérifier le formulaire - mot de passe incorrect.</p>';
-
-                        if($_POST["newpassw1"] == $_POST["newpassw2"]){
-                            echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez saisir un mot de passe différent.</p>';
-                        }
+                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez entrer votre email.</p>';
                     }
                 }
+
+                if(isset($_POST["submitpassw"])){
+
+                    $req2 = $dbh->prepare('SELECT user_password FROM Utilisateurs WHERE user_id =?');
+                    $req2->bindParam(1, $_SESSION['user_id']);
+                    $req2->execute();  
+                    $passw1 = $req2->fetch();
+
+                    if(!empty($_POST["oldpassw1"])){
+                        $password = $_POST['oldpassw1'];
+                        if(password_verify($password, $passw1[0])){
+                            if(empty($_POST['newpassw1'])){
+                                echo '<p style ="color:white"> Veuillez vérifier le formulaire - ancien mot de passe correct, veuillez entrer votre nouveau mot de passe.</p>';
+                            }else{
+                                if(!preg_match("`^([a-zA-Z0-9-_]{8,})$`", $_POST['newpassw1'])){
+                                    echo '<p style ="color:white">Veuillez vérifier le formulaire - nouveau mot de passe non conforme.</p>';
+                                }elseif($_POST['newpassw1'] != $_POST['newpassw2']){
+                                    echo '<p style ="color:white">Veuillez vérifier le formulaire - votre confirmation de mot passe est incorrect.</p>';
+                                }else{
+                                    $crypt_password = password_hash($_POST['newpassw2'], PASSWORD_ARGON2ID);
+                                    $sql="UPDATE Utilisateurs SET user_password = :user_password WHERE user_id = :user_id";
+                                    $stmt = $dbh->prepare($sql);
+                                    $stmt->bindParam (':user_password',$crypt_password);
+                                    $stmt->bindParam (':user_id',$_SESSION['user_id']);
+                                    $stmt->execute();
+                                    echo '<p style ="color:white"> Nouveau mot de passe créé avec succès.</p>';
+                                }
+                            }
+                        }else{
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - ancien mot de passe incorrect.</p>';
+                        }
+                    }else{
+                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez entrer votre mot de passe.</p>';
+                    }
+                }
+
+                /*
+                if(isset($_POST["submitpassw"])){
+                    if(empty($_POST['oldpassw'])){ 
+                        echo '<p style ="color:white">Veuillez vérifier le formulaire - veuillez entrer votre mot de passe.</p>';
+                    }elseif(!empty($_POST['newpassw1'])){
+                        if(!preg_match("`^([a-zA-Z0-9-_]{8,})$`", $_POST['newpassw1'])){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - nouveau mot de passe non conforme.</p>';
+                        }elseif($_POST['newpassw1'] != $_POST['newpassw2']){
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre confirmation de mot passe est incorrect.</p>';
+                        }else{
+                            $crypt_password = password_hash($_POST['newpassw2'], PASSWORD_ARGON2ID);
+                            $sql="UPDATE Utilisateurs SET user_password = :user_password WHERE user_id = :user_id";
+                            $stmt = $dbh->prepare($sql);
+                            $stmt->bindParam (':user_password',$crypt_password);
+                            $stmt->bindParam (':user_id',$_SESSION['user_id']);
+                            $stmt->execute();
+                            echo '<p style ="color:white"> Nouveau mot de passe créé avec succès.</p>';
+                        }
+                    
+                    }else{ 
+
+                        $req2 = $dbh->prepare('SELECT user_password FROM Utilisateurs WHERE user_id =?');
+                        $req2->bindParam(1, $_SESSION['user_id']);
+                        $req2->execute();  
+                        $passw1 = $req2->fetch();
+
+                        if(password_verify($_POST['oldpassw'], $passw1[0])){
+                            echo '<p style ="color:white">Ancien mot de passe correct.</p>';
+                        }  
+                        else {  
+                            echo '<p style ="color:white">Veuillez vérifier le formulaire - votre mot de passe est incorrect.</p>';
+                        }  
+                    }  
+                }*/
             ?>
             </p>
         </div>
         </main>
-
         <?php
             include('./view/footer.inc.php');
         ?>
