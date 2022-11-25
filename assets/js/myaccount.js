@@ -21,9 +21,9 @@ function strengthChecker(){
     const medium = document.getElementById("medium");
     const strong = document.getElementById("strong");
 
-    var reg1 = /([a-z]){0,8}/g;
-    var reg2 = 
-
+    var reg1 = /^([a-z]){0,8}$/gm;
+    var reg2 = /^(?=.*[0-9])(?=.*[a-z])(?=(.*[A-Z]){1,}).{8,}$/gm;
+    var reg3 = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=(.*[!@#$%^&*()\-_+.]){1,}).{8,}$/gm;
 
     //let barLength = Object.values(parameters).filter(value=>value);
 
@@ -33,11 +33,11 @@ function strengthChecker(){
     if(reg1.test(password)){
         weak.style.background = 'red';
 
-    }else if(parameters.letters==true && parameters.count==true && parameters.numbers==true && parameters.special==false){
+    }else if(reg2.test(password)){
         weak.style.background = 'yellow';
         medium.style.background = 'yellow';
 
-    }else if(parameters.letters==true && parameters.count==true && parameters.numbers==true && parameters.special==true){
+    }else if(reg3.test(password)){
         weak.style.background = 'green';
         medium.style.background = 'green';
         strong.style.background = 'green';
