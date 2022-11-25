@@ -248,18 +248,20 @@ function updateTime(){
         })
     }
     if (!paused) {
-        milliseconds+=10;
-        if(milliseconds == 100){
+        
+        if(milliseconds >= 9){
             milliseconds = 0;
             seconds++;
             if(seconds == 60){
                 seconds = 0;
                 minutes++;
             }
+        } else {
+            milliseconds+=1
         }
         m = minutes < 10 ? "0" + minutes : minutes;
         s = seconds < 10 ? "0" + seconds : seconds;
-        ms = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+        ms = milliseconds < 10 ? milliseconds + "0" : milliseconds;
 
         timer.textContent = `${m}:${s}:${ms}`;
     }    
