@@ -87,20 +87,7 @@ $game_names = $games->fetchAll();
                                     <th>Date</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php
-                                    foreach ($stmt as $row) {
-                                        ?><tr>
-                                            <td><a href='memory.php' class='memory-link'><?=$row['game_name']?></a></td>
-                                            <td><?=$row['user_pseudo']?></td>
-                                            <?php //set the first letter as an upper ?>
-                                            <td><?=ucfirst($row['score_level'])?></td>
-                                            <td><?=$row['score_stopwatch']?></td>
-                                            <td><?=$row['score_datetime']?></td>
-                                        </tr><?php
-                                    }
-                                ?>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                         <?php 
                             } else {
