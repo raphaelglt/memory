@@ -233,7 +233,6 @@ function updateTime(){
             value: 23,
             stopwatch: `${m}:${s}:${ms}`
         }
-        console.log(data)
         fetch('includes/send_score.php', {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
