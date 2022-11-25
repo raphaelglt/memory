@@ -15,6 +15,7 @@ $themes = $stmt->fetchAll();
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/css/maPage.css">
         <link rel="stylesheet" href="assets/css/memory.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     </head>
     <body>
         <div id="page-container">
@@ -70,47 +71,24 @@ $themes = $stmt->fetchAll();
                     <button id="submit" onClick="sendMessage()">Envoyer</button>
                 </form>
             </article>
-                
-                <?php
-
-                // precaution de securité 
-                $user_message_date = date('Y-m-d H:i:s');
-                $error=false;
-                    // l'envoie d'un message au chat 
-                    if(!empty($_POST)){
-                        echo $_POST['submit'];
-                        if (isset($_POST['submit'])){
-                            $input = htmlentities(trim($_POST['message']));
-                            // si le message ne fait plus de 200 caractère 
-                            if (!preg_match("`^([a-zA-Z0-9-_]{1,200})$`", $input)){
-                                $error = "message trop lent";
-                                
-
-                            }
-                            if(!$error){
-                                echo "send";
-                                $sql = "SELECT game_id FROM Jeux WHERE game_name = 'The Power Of Memory'";
-                                $gameid = $dbh->query($sql);
-                                $game_id = $gameid->fetch();
-                                $input = $_POST['message'];
-                                $sql = "INSERT INTO Messages (message_id, message_game_id, message_user_id, message_value, message_datetime)
-                                VALUES (NULL, :message_game_id , :message_user_id, :message_value, :message_datetime)";
-                                $send_message = $dbh->prepare($sql);
-                                $send_message->bindParam(':message_game_id',$game_id['game_id']);
-                                $send_message->bindParam(':message_user_id',$_SESSION['user_id']);
-                                $send_message->bindParam(':message_value',$input);
-                                $send_message->bindParam(':message_datetime',$user_message_date);
-                                $send_message->execute();
-                            }
-                            
-                        }
-                    }
+            </article>
+            <?php
                 } else {
                     include('./view/disconnected.inc.php');
                 }
-                include('./view/footer.inc.php');
+                include('./view/footer.inc.php'); 
             ?>
-        </div>    
+        </div>
+        <div id='pop-up'>
+            <div id='pop-up-content'>
+                <h2>Félicitations !!</h2>
+                <h3 id="result"></h3>
+                <div id="pop-up-buttons">
+                    <button id="toward-index"><a href="./index.php">Retour à l'accueil</a></button>
+                    <button id="toward-memory"><a href="./memory.php">Rejouer une partie</a></button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 <script src="./assets/js/memory.js"></script>

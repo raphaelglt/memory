@@ -69,7 +69,7 @@ if(!empty($_POST)){
             $password=$_POST['password'];
             
         }
-        if (!$error){
+        if (!isset($error)){
             $user_register_date = date('Y-m-d H:i:s');
             $sql="INSERT INTO Utilisateurs (user_email, user_pseudo, user_password, user_register_date, user_last_connection) VALUES (:user_email, :user_pseudo, :user_password, :user_register_date, :user_last_connection)";
             $stmt = $dbh->prepare($sql);
@@ -80,8 +80,18 @@ if(!empty($_POST)){
             $stmt->bindParam (':user_last_connection',$user_register_date);
             $stmt->execute();
 
-            header('Location: index.php');
+            $req = $dbh->prepare("SELECT * FROM Utilisateurs WHERE user_email=? AND user_pseudo=?");
             
+            $req->bindParam(1, $email);
+            $req->bindParam(2, $pseudo);
+            $req->execute();
+
+            $row = $req->fetch();
+
+            $_SESSION['user_id'] =$row['user_id'];
+            $_SESSION['user_pseudo'] =$row['user_pseudo'];
+
+            header('Location: index.php');   
         }
     } 
 }

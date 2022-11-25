@@ -35,3 +35,26 @@ td {
     margin: 50px;
     font-size: 16px;
 }
+#select-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#select-content {
+    display: flex;
+    flex-direction: row;
+}
+select {
+    border: none;
+    border-radius: 1px;
+    height: 25px;
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+}
+button {
+    margin-top: 20px;
+    padding: 5px 10px;
+}

@@ -1,15 +1,6 @@
 <?php
 include('./database.inc.php');
 include('../init.php');
-// if (isset($_GET['theme'])) {
-//     intdiv(pow($memory_size, 2),2)
-//     $stmt = $dbh->prepare('SELECT * FROM Images WHERE image_theme = :image_theme');
-//     $stmt->bindParam(':image_theme', $_GET['theme']);
-//     $stmt->execute();
-//     $rows = $stmt->fetchAll();
-//     var_dump($rows);
-// }    
-
 
 //isset($_SESSION['user_id'])
 if (isset($_GET['theme']) && isset($_GET['size'])) {
@@ -40,7 +31,7 @@ if (isset($_GET['theme']) && isset($_GET['size'])) {
         $sql = file_get_contents('../sql/insert_image.sql');
         $stmt = $dbh->prepare($sql);
 
-        $next_link = "https://api.pexels.com/v1/search?query=$theme&page=$page_nb&per_page=$photo_nb";
+        $next_link = "https://api.pexels.com/v1/search?query=$theme&page=$page_nb&per_page=$photo_nb&size=small";
         for ($page=0; $page<$page_nb; $page++) {
             $curl = curl_init($next_link);
 
@@ -71,8 +62,8 @@ if (isset($_GET['theme']) && isset($_GET['size'])) {
     $stmt->bindParam(':image_theme', $theme);
     $stmt->execute();
     $rows = $stmt->fetchAll();
-    echo json_encode($rows);
+    echo json_encode(["images" => $rows]);
 } else {
-    echo "Missing params";
+    echo json_encode(["error" => "Missing params"]);
 }
 ?>

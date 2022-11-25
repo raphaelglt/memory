@@ -4,6 +4,15 @@ include('./includes/database.inc.php');
 include('./init.php');
 $sql = file_get_contents('./sql/scoreall.sql');
 $stmt = $dbh->query($sql);
+
+$levels = $dbh->query('SELECT DISTINCT score_level FROM Scores');
+$game_levels = $levels->fetchAll();
+
+$users = $dbh->query('SELECT DISTINCT score_user_id, user_pseudo FROM Scores INNER JOIN Utilisateurs ON score_user_id = user_id ');
+$game_users = $users->fetchAll();
+
+$games = $dbh->query('SELECT game_id, game_name FROM Jeux');
+$game_names = $games->fetchAll(); 
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +37,40 @@ $stmt = $dbh->query($sql);
                 include('./view/header.inc.php'); 
             ?>
             <main>
+                <div id="select-container">
+                    <div id="select-content">
+                        <select id="select-difficulty">
+                            <option value="" selected>--Difficulté--</option>
+                            <?php
+                                if (!empty($game_levels)) {
+                                    foreach ($game_levels as $elt) {
+                                        ?><option value=<?= $elt['score_level'] ?>><?= ucfirst($elt['score_level']) ?></option><?php
+                                    }
+                                }    
+                            ?>
+                        </select>
+                        <select id="select-player">
+                            <option selected value="">--Joueur--</option>
+                            <?php
+                                if (!empty($game_users)) {
+                                    foreach ($game_users as $elt) {
+                                        ?><option value=<?= $elt['score_user_id'] ?>><?= ucfirst($elt['user_pseudo']) ?></option><?php
+                                    }
+                                }    
+                            ?>
+                        </select>
+                        <select id="select-game">
+                            <option selected value="">--Jeux--</option>
+                            <?php
+                                if (!empty($game_names)) {
+                                    foreach ($game_names as $elt) {
+                                        ?><option value=<?= $elt['game_id'] ?>><?= ucfirst($elt['game_name']) ?></option><?php
+                                    }
+                                }    
+                            ?>
+                        </select>
+                    </div>
+                </div>  
                 <?php 
                 if (isset($_SESSION['user_id'])) { ?>
                     <div id="table-container">
@@ -44,20 +87,7 @@ $stmt = $dbh->query($sql);
                                     <th>Date</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php
-                                    foreach ($stmt as $row) {
-                                        ?><tr>
-                                            <td><a href='memory.php' class='memory-link'><?=$row['game_name']?></a></td>
-                                            <td><?=$row['user_pseudo']?></td>
-                                            <?php //set the first letter as an upper ?>
-                                            <td><?=ucfirst($row['score_level'])?></td>
-                                            <td><?=$row['score_value']?></td>
-                                            <td><?=$row['score_datetime']?></td>
-                                        </tr><?php
-                                    }
-                                ?>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                         <?php 
                             } else {
@@ -77,3 +107,4 @@ $stmt = $dbh->query($sql);
         </div>    
     </body>
 </html>
+<script src="./assets/js/scores.js"></script>
