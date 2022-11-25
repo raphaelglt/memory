@@ -278,7 +278,7 @@ function loadMessage() {
         })
         .then((json) => {
             console.log(json)
-            chatBody.innerHTML = "";
+            
                 if (json['messages'] && json['messages'].length>0) {
                     
                     json['messages'].forEach(message =>  addelement(message, json['user_id']))

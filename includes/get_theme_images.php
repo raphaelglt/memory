@@ -48,7 +48,7 @@ if (isset($_GET['theme']) && isset($_GET['size'])) {
                 foreach ($decode['photos'] as $elt) {
                     $stmt->bindParam(':image_id', $elt['id']);
                     $stmt->bindParam(':image_theme', $theme);
-                    $stmt->bindParam(':image_url', $elt['src']['original']);
+                    $stmt->bindParam(':image_url', $elt['src']['tiny']);
                     $stmt->execute();
                 }
                 if (!empty($decode['next_page'])) $next_link = $decode['next_page']; 
