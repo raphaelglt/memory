@@ -137,14 +137,14 @@ main {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
 }
-#no-message-container {
+.no-message-container {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
-#no-message-text {
+.no-message-text {
     font-size: 15px;
     font-family: "Poppins", sans-serif;
 }
