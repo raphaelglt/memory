@@ -2,6 +2,7 @@
 include('./includes/database.inc.php'); 
 //le submit
 //les message d'erreur dans des variables
+require_once('init.php');
 
 if(!empty($_POST)){
     extract($_POST);
@@ -85,11 +86,10 @@ if(!empty($_POST)){
             $req->bindParam(1, $email);
             $req->bindParam(2, $pseudo);
             $req->execute();
-
             $row = $req->fetch();
 
-            $_SESSION['user_id'] =$row['user_id'];
-            $_SESSION['user_pseudo'] =$row['user_pseudo'];
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['user_pseudo'] = $row['user_pseudo'];
 
             header('Location: index.php');   
         }
