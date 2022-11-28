@@ -41,9 +41,9 @@ const state = {
 //handle le click pour start le jeu
 function onButton() {
     //prend la valeur de la difficulté (nombre de case) et le theme
-    let difficultyValue = selectDifficulty.value;
+    //let difficultyValue = selectDifficulty.value;
     let themeValue = selectTheme.value;
-    if (difficultyValue != "" && themeValue != "") {
+    if (/*difficultyValue != "" &&*/ themeValue != "") {
         //requête ajax pour chercher les images
         fetch("includes/get_theme_images.php?theme="+themeValue+"&size="+difficultyValue)
             .then((response) => {

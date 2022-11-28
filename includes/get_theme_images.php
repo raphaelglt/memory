@@ -3,10 +3,10 @@ include('./database.inc.php');
 include('../init.php');
 
 //isset($_SESSION['user_id'])
-if (isset($_GET['theme']) && isset($_GET['size'])) {
+if (isset($_GET['size'])) {
     $sql = file_get_contents('../sql/get_images.sql');
     $stmt = $dbh->prepare($sql);
-    $theme = $_GET['theme'];
+    $theme = $_GET['arbre'];
     $stmt->bindParam(':image_theme', $theme);
     $stmt->execute();
 
