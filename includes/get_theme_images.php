@@ -6,7 +6,7 @@ include('../init.php');
 if (isset($_GET['size'])) {
     $sql = file_get_contents('../sql/get_images.sql');
     $stmt = $dbh->prepare($sql);
-    $theme = $_GET['arbre'];
+    $theme = arbre;
     $stmt->bindParam(':image_theme', $theme);
     $stmt->execute();
 

@@ -41,6 +41,7 @@ $themes = $stmt->fetchAll();
                                 </select>
                                 <select id="select-theme">
                                     <option selected value="">--Choisissez le thème--</option>
+                                    <option selected value="">arbre</option>
                                     <?php
                                         if (!empty($themes)) {
                                             foreach ($themes as $elt) {
